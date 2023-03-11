@@ -50,9 +50,9 @@ export class ExpensesController {
   update(
     @Param('id') id: string,
     @Body() updateExpenseDto: UpdateExpenseDto,
-    userId: string,
+    @Request() req: MyRequest,
   ): Promise<Optional<Expense>> {
-    return this.expensesService.update(id, updateExpenseDto, userId);
+    return this.expensesService.update(id, updateExpenseDto, req.user!.id);
   }
 
   @UseGuards(JwtAuthGuard)

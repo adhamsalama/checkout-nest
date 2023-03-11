@@ -38,7 +38,7 @@ export class ExpensesService {
   ): Promise<Optional<Expense>> {
     return this.expenseModel.findOneAndUpdate(
       { _id: id, userId },
-      { ...updateExpenseDto },
+      { ...updateExpenseDto, userId },
       { new: true },
     );
   }
