@@ -14,7 +14,7 @@ import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { MyRequest, Optional } from 'src/types';
+import { ExpenseStatistics, MyRequest, Optional } from 'src/types';
 import { Expense } from './entities/expense.entity';
 
 @Controller('expenses')
@@ -34,6 +34,11 @@ export class ExpensesController {
   @Get()
   findAll(@Request() req: MyRequest): Promise<Expense[]> {
     return this.expensesService.findAll(req.user!.id);
+  }
+  @UseGuards(JwtAuthGuard)
+  @Get('statistics')
+  getStatistics(@Request() req: MyRequest): Promise<ExpenseStatistics> {
+    return this.expensesService.getStatistics(req.user!.id);
   }
 
   @UseGuards(JwtAuthGuard)
