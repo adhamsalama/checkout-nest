@@ -42,4 +42,5 @@ export class Expense {
 
 export const ExpenseSchema = SchemaFactory.createForClass(Expense);
 
+ExpenseSchema.index({ userId: 1 });
 ExpenseSchema.index({ _id: 1, userId: 1 });
