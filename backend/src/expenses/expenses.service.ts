@@ -23,8 +23,17 @@ export class ExpensesService {
     return new Ok(result.val);
   }
 
-  async findAll(userId: string): Promise<Expense[]> {
-    return this.expenseModel.find({ userId });
+  async findAll(
+    userId: string,
+    limit: number,
+    offset = 0,
+    date?: string,
+  ): Promise<Expense[]> {
+    return this.expenseModel
+      .find({ userId, ...(date && { date: new Date(date) }) })
+      .skip(offset)
+      .limit(limit)
+      .sort({ date: -1 });
   }
 
   async findOne(id: string, userId: string): Promise<Optional<Expense>> {

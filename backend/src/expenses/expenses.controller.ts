@@ -9,39 +9,52 @@ import {
   Delete,
   UseGuards,
   Request,
+  Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ExpenseStatistics, MyRequest, Optional } from 'src/types';
+import { MyRequest, Optional } from 'src/types';
 import { Expense } from './entities/expense.entity';
+import { ExpenseStatistics } from './dto/get-expenses-statistics.dto';
 
+@UseGuards(JwtAuthGuard)
 @Controller('expenses')
 export class ExpensesController {
   constructor(private readonly expensesService: ExpensesService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
-  create(
+  async create(
     @Body() createExpenseDto: CreateExpenseDto,
     @Request() req: MyRequest,
-  ) {
-    return this.expensesService.create(createExpenseDto, req.user!.id);
+  ): Promise<Expense> {
+    const res = await this.expensesService.create(
+      createExpenseDto,
+      req.user!.id,
+    );
+    if (!res.ok) throw new Error(res.val.message);
+    return res.val;
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
-  findAll(@Request() req: MyRequest): Promise<Expense[]> {
-    return this.expensesService.findAll(req.user!.id);
+  findAll(
+    @Request() req: MyRequest,
+    @Query('date') date: string,
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('offset', ParseIntPipe) offset: number,
+  ): Promise<Expense[]> {
+    console.log({ date, limit });
+
+    return this.expensesService.findAll(req.user!.id, limit, offset, date);
   }
-  @UseGuards(JwtAuthGuard)
+
   @Get('statistics')
   getStatistics(@Request() req: MyRequest): Promise<ExpenseStatistics> {
     return this.expensesService.getStatistics(req.user!.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('statistics/yearly/:year')
   getYearlyStatistics(@Param('year') year: string, @Request() req: MyRequest) {
     return this.expensesService.getMonthlyStatisticsForAYear(
@@ -50,7 +63,6 @@ export class ExpensesController {
     );
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('statistics/:year/:month')
   getMonthlyStatistics(
     @Param('month') month: string,
@@ -60,7 +72,6 @@ export class ExpensesController {
     return this.expensesService.getMonthlyStatistics(req.user!.id, year, month);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(
     @Param('id') id: string,
@@ -69,7 +80,6 @@ export class ExpensesController {
     return this.expensesService.findOne(id, req.user!.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -79,7 +89,6 @@ export class ExpensesController {
     return this.expensesService.update(id, updateExpenseDto, req.user!.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(
     @Param('id') id: string,
