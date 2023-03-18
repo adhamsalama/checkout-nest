@@ -42,6 +42,25 @@ export class ExpensesController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('statistics/yearly/:year')
+  getYearlyStatistics(@Param('year') year: string, @Request() req: MyRequest) {
+    return this.expensesService.getMonthlyStatisticsForAYear(
+      req.user!.id,
+      parseInt(year),
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('statistics/:year/:month')
+  getMonthlyStatistics(
+    @Param('month') month: string,
+    @Param('year') year: string,
+    @Request() req: MyRequest,
+  ) {
+    return this.expensesService.getMonthlyStatistics(req.user!.id, year, month);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(
     @Param('id') id: string,

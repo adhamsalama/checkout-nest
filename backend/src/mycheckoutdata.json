@@ -1,0 +1,3531 @@
+// select checkout_item.name, price, quantity, seller,  checkout_category.name  as category , date, comment from checkout_item join checkout_category on checkout_item.category_id = checkout_category.id
+[
+  {
+    "tags": "food",
+    "comment": "كشري ب 8 و كيس عيش ب 2",
+    "date": "2020-10-22",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-10-19",
+    "name": "سندوتش بطاطس سوري",
+    "price": 13.0,
+    "quantity": 1,
+    "seller": "ميكسيكانو"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-10-19",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-10-18",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-10-14",
+    "name": "عيش",
+    "price": 2.0,
+    "quantity": 4,
+    "seller": "الفرن السياحي"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-10-13",
+    "name": "حجز كورة",
+    "price": 6.0,
+    "quantity": 1,
+    "seller": "الحريف"
+  },
+  {
+    "tags": "medication",
+    "comment": "",
+    "date": "2020-10-13",
+    "name": "قطرة",
+    "price": 9.0,
+    "quantity": 1,
+    "seller": "صيدلية عزمي"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-10-12",
+    "name": "حجز كورة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الحريف"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-10-11",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-25",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-25",
+    "name": "عيش",
+    "price": 2.0,
+    "quantity": 4,
+    "seller": "الفرن السياحي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-24",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-24",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-21",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-20",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-20",
+    "name": "فول",
+    "price": 2.0,
+    "quantity": 1,
+    "seller": "ابوسليمة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-20",
+    "name": "عيش",
+    "price": 2.0,
+    "quantity": 4,
+    "seller": "الفرن السياحي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-19",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-19",
+    "name": "سندوتشات فول",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "ابوسليمة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-15",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-15",
+    "name": "طاجن",
+    "price": 12.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-09-15",
+    "name": "حجز كورة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "الحريف"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-12",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-12",
+    "name": "طاجن",
+    "price": 12.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-09-11",
+    "name": "حجز كورة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الساحة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-09-10",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "فواتير",
+    "comment": "",
+    "date": "2020-10-24",
+    "name": "فاتورة الماية",
+    "price": 4.0,
+    "quantity": 1,
+    "seller": "المحصل"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-10-24",
+    "name": "حجز كورة",
+    "price": 8.0,
+    "quantity": 1,
+    "seller": "ابو جمعة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-10-25",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-10-25",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "وائل تلوث"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-10-26",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-10-26",
+    "name": "سندوتش بطاطس سوري",
+    "price": 13.0,
+    "quantity": 1,
+    "seller": "ميكسيكانو"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-10-27",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-10-27",
+    "name": "حجز كورة",
+    "price": 6.0,
+    "quantity": 1,
+    "seller": "الحريف"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-10-28",
+    "name": "Headphones",
+    "price": 45.0,
+    "quantity": 1,
+    "seller": "الفتح"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-10-28",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "الشرفا",
+    "date": "2020-10-29",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-10-30",
+    "name": "مواصلات",
+    "price": 2.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-01",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-01",
+    "name": "سندوتشات شيبسي",
+    "price": 9.0,
+    "quantity": 3,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-01",
+    "name": "مناديل",
+    "price": 1.0,
+    "quantity": 1,
+    "seller": "بيبو"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-11-02",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-02",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-11-03",
+    "name": "تصوير",
+    "price": 2.5,
+    "quantity": 1,
+    "seller": "كرنفال"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-11-05",
+    "name": "حجز كورة",
+    "price": 8.0,
+    "quantity": 1,
+    "seller": "العزبة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-08",
+    "name": "مواصلات",
+    "price": 4.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-08",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري الرحماني"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-09",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-09",
+    "name": "دومتي سندوتش",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "بيبو"
+  },
+  {
+    "tags": "food",
+    "comment": "اتنين شيبسي و واحد فول",
+    "date": "2020-11-09",
+    "name": "فطار",
+    "price": 8.5,
+    "quantity": 1,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-09",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-11-10",
+    "name": "حجز كورة",
+    "price": 8.0,
+    "quantity": 1,
+    "seller": "الحريف"
+  },
+  {
+    "tags": "medication",
+    "comment": "",
+    "date": "2020-11-13",
+    "name": "قطرة",
+    "price": 9.0,
+    "quantity": 1,
+    "seller": "صيدلية عزمي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-13",
+    "name": "كشري",
+    "price": 9.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-15",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-15",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-16",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-16",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-22",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-22",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-23",
+    "name": "مواصلات",
+    "price": 9.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-23",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-25",
+    "name": "فول",
+    "price": 2.0,
+    "quantity": 1,
+    "seller": "سميرة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-11-25",
+    "name": "حجز كورة",
+    "price": 9.0,
+    "quantity": 1,
+    "seller": "الساحة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-29",
+    "name": "مواصلات",
+    "price": 9.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-29",
+    "name": "سندوتش بطاطس سوري",
+    "price": 13.5,
+    "quantity": 1,
+    "seller": "ميكسيكانو"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-11-30",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-30",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-11-30",
+    "name": "عيش فينو",
+    "price": 3.0,
+    "quantity": 1,
+    "seller": "الفرن"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-12-02",
+    "name": "كيس شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-11-27",
+    "name": "حجز كورة",
+    "price": 7.0,
+    "quantity": 1,
+    "seller": "الساحة"
+  },
+  {
+    "tags": "food",
+    "comment": "طاجن فراخ + كيس عيش",
+    "date": "2020-12-04",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "دفعت 5 الصبح عشان السواق العرص كان بيحمل تحرير ب 6 و مظلات ب 5",
+    "date": "2020-12-05",
+    "name": "مواصلات",
+    "price": 9.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-05",
+    "name": "كشري",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-05",
+    "name": "عيش فينو",
+    "price": 2.0,
+    "quantity": 1,
+    "seller": "الفرن"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "السواق العرص قال مفيش باقي",
+    "date": "2020-12-06",
+    "name": "مواصلات",
+    "price": 9.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "طاجن فراخ + كيس عيش",
+    "date": "2020-12-06",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-12-08",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-12-08",
+    "name": "Modern Operating Systems book",
+    "price": 75.0,
+    "quantity": 1,
+    "seller": "محيي"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-12-09",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-12-09",
+    "name": "زكا",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "الست اللي رجليها فيها ورم"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-12-10",
+    "name": "مواصلات",
+    "price": 9.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "9.5 gneh na2sen",
+    "date": "2020-12-11",
+    "name": "can't remember",
+    "price": 9.5,
+    "quantity": 1,
+    "seller": "idk"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-14",
+    "name": "سندوتشات شيبسي",
+    "price": 6.0,
+    "quantity": 2,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-12-14",
+    "name": "مواصلات",
+    "price": 9.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-12-16",
+    "name": "حلبة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-12-20",
+    "name": "nivea",
+    "price": 45.0,
+    "quantity": 1,
+    "seller": "ولاد رجب"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-19",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2020-12-20",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-20",
+    "name": "سندوتشات شيبسي",
+    "price": 9.0,
+    "quantity": 3,
+    "seller": "عم وائل"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2020-12-22",
+    "name": "كارت شحن",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "القدس"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-23",
+    "name": "طاجن",
+    "price": 12.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "medication",
+    "comment": "",
+    "date": "2020-12-25",
+    "name": "قطرة",
+    "price": 9.0,
+    "quantity": 1,
+    "seller": "صيدلية عزمي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2020-12-30",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-01-03",
+    "name": "ماما خدت خمسة جنية",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "ماما"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2021-01-10",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-01-10",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "others",
+    "comment": "",
+    "date": "2021-01-12",
+    "name": "Don't remeber",
+    "price": 29.5,
+    "quantity": 1,
+    "seller": "Ughhh"
+  },
+  {
+    "tags": "food",
+    "comment": "حطيت نص جنية على ربع جنيى من ماما وجبت بجنية الا ربع عيش",
+    "date": "2021-01-24",
+    "name": "عيش",
+    "price": 0.5,
+    "quantity": 1,
+    "seller": "الطابونة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2021-01-24",
+    "name": "مواصلات ابويا",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-01-31",
+    "name": "حلاقة",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "عم طوخي"
+  },
+  {
+    "tags": "others",
+    "comment": "",
+    "date": "2021-02-01",
+    "name": "نص جنية مش لاقيه",
+    "price": 0.5,
+    "quantity": 1,
+    "seller": "معرفش"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2021-01-31",
+    "name": "كوتش",
+    "price": 100.0,
+    "quantity": 1,
+    "seller": "المحل اللي على اول الشارع"
+  },
+  {
+    "tags": "food",
+    "comment": "+ كيس عيش",
+    "date": "2021-02-05",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-05",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-04",
+    "name": "حلبة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-07",
+    "name": "فاتورة الكهربا",
+    "price": 183.0,
+    "quantity": 1,
+    "seller": "المحصل"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-08",
+    "name": "10 جنية",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "ماما"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2021-02-10",
+    "name": "زكاة",
+    "price": 2.0,
+    "quantity": 1,
+    "seller": "الشاب"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2021-02-10",
+    "name": "زكاة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "الست الكبيرة اللي مبتشوفش"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-10",
+    "name": "كركدية",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "قهوة بساطة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-08",
+    "name": "مشاريب القهوة",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "none",
+    "comment": "قهوة شارع 14 المعرصة",
+    "date": "2021-02-04",
+    "name": "مشاريب القهوة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-11",
+    "name": "مشاريب القهوة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "قهوة بساطة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-02-11",
+    "name": "سكرينة للموبايل",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "برونتو تقريبا"
+  },
+  {
+    "tags": "none",
+    "comment": "مكتبة معرصة مش مصور منها تاني",
+    "date": "2021-02-13",
+    "name": "طباعة ورق",
+    "price": 5.0,
+    "quantity": 7,
+    "seller": "مكتبة الكرنفال"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2021-02-19",
+    "name": "طاجن",
+    "price": 12.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "others",
+    "comment": "",
+    "date": "2021-02-20",
+    "name": "lost",
+    "price": 1.0,
+    "quantity": 1,
+    "seller": "idk"
+  },
+  {
+    "tags": "others",
+    "comment": "ماما خدت 30 واديتني 100\\nحسبتها لقيتني ناقص 5, فتقريبا اديتها 35 مش 30 بس",
+    "date": "2021-02-21",
+    "name": "lost",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "mama"
+  },
+  {
+    "tags": "فواتير",
+    "comment": "",
+    "date": "2021-02-25",
+    "name": "فاتورة الماية",
+    "price": 4.0,
+    "quantity": 1,
+    "seller": "المحصل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2021-03-01",
+    "name": "طاجن",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-03-18",
+    "name": "قاعدة على القهوة",
+    "price": 25.0,
+    "quantity": 3,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "none",
+    "comment": "4.5 مواصلات\\n14 ازازة بيبسي اتنين لتر",
+    "date": "2021-03-19",
+    "name": "رحلة لولاد عمي جمال",
+    "price": 18.5,
+    "quantity": 1,
+    "seller": "اي حاجة"
+  },
+  {
+    "tags": "none",
+    "comment": "سلسلة فضة",
+    "date": "2021-03-21",
+    "name": "هدية عيد الام",
+    "price": 280.0,
+    "quantity": 1,
+    "seller": "نابليون"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2021-03-22",
+    "name": "حواوشي",
+    "price": 65.0,
+    "quantity": 4,
+    "seller": "مسعد"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2021-03-22",
+    "name": "شيبسي وفشار",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2021-03-22",
+    "name": "لتر بيبسي",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "الصعيدي"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "كنت هتخطف تقريبا",
+    "date": "2021-03-22",
+    "name": "توكتوك",
+    "price": 8.0,
+    "quantity": 1,
+    "seller": "سواق مبيفهمش حاجة"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2021-03-21",
+    "name": "فيروز",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2021-03-23",
+    "name": "طاجن",
+    "price": 12.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2021-03-26",
+    "name": "حجز كورة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "ضمضم"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2021-03-26",
+    "name": "حلبة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2021-03-28",
+    "name": "مواصلات",
+    "price": 8.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2021-03-28",
+    "name": "مشاريب",
+    "price": 15.0,
+    "quantity": 2,
+    "seller": "الفهوة"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-07-07",
+    "name": "Nivia مزيل عرق",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "كازيون"
+  },
+  {
+    "tags": "none",
+    "comment": "السواق العرص خد اجرة شبرا ٥ بدل ٣",
+    "date": "2022-07-08",
+    "name": "مواصلات",
+    "price": 7.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-07-08",
+    "name": "لب",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "food",
+    "comment": "١٦ + كيس عيش",
+    "date": "2022-07-08",
+    "name": "طاجن",
+    "price": 18.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "medication",
+    "comment": "",
+    "date": "2022-07-11",
+    "name": "معحون سنان",
+    "price": 6.5,
+    "quantity": 1,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-13",
+    "name": "مواصلات",
+    "price": 6.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-07-14",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "محل"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-07-16",
+    "name": "شيبسي",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "محل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-17",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-07-16",
+    "name": "شهادة ميلاد",
+    "price": 25.0,
+    "quantity": 1,
+    "seller": "السجل المدني"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-16",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-07-16",
+    "name": "بيتزا",
+    "price": 45.0,
+    "quantity": 1,
+    "seller": "القليوبي"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-17",
+    "name": "مواصلات",
+    "price": 26.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-18",
+    "name": "مواصلات",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-20",
+    "name": "مواصلات",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-22",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مشاريب",
+    "comment": "",
+    "date": "2022-07-22",
+    "name": "مشاريب",
+    "price": 12.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-23",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "حلاقة",
+    "comment": "",
+    "date": "2022-07-23",
+    "name": "حلاقة",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "عم طوخي"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-24",
+    "name": "مواصلات",
+    "price": 31.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-25",
+    "name": "مواصلات",
+    "price": 33.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-26",
+    "name": "مواصلات",
+    "price": 14.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-07-26",
+    "name": "افادة نجاح",
+    "price": 115.0,
+    "quantity": 1,
+    "seller": "الكلية"
+  },
+  {
+    "tags": " drinks",
+    "comment": "",
+    "date": "2022-07-26",
+    "name": "مياة",
+    "price": 4.0,
+    "quantity": 1,
+    "seller": "بيبو"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-07-26",
+    "name": "فايل",
+    "price": 1.0,
+    "quantity": 1,
+    "seller": "بيبو"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-07-26",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-27",
+    "name": "مواصلات",
+    "price": 30.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "ورق",
+    "comment": "للجيش",
+    "date": "2022-07-28",
+    "name": "فيش",
+    "price": 70.0,
+    "quantity": 1,
+    "seller": "للجيش"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-28",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-28",
+    "name": "مواصلات",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-07-28",
+    "name": "تصوير",
+    "price": 4.5,
+    "quantity": 1,
+    "seller": "مكتبة"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-07-29",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-07-30",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-07-30",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-01",
+    "name": "مواصلات",
+    "price": 30.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-08-02",
+    "name": "شهادة ميلاد",
+    "price": 25.0,
+    "quantity": 1,
+    "seller": "السحل المدني"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-08-02",
+    "name": "فصيلة الدم",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "الوحدة الصحية"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-02",
+    "name": "مواصلات",
+    "price": 2.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-08-02",
+    "name": "تصوير",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المكتبة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-03",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-08-04",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-06",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-08",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "شحن",
+    "comment": "",
+    "date": "2022-08-09",
+    "name": "رصيد",
+    "price": 38.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-08-09",
+    "name": "Snacks",
+    "price": 22.0,
+    "quantity": 4,
+    "seller": "المحل"
+  },
+  {
+    "tags": "تصوير",
+    "comment": "",
+    "date": "2022-08-09",
+    "name": "تصوير",
+    "price": 3.0,
+    "quantity": 1,
+    "seller": "المكتبة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-12",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "gifts",
+    "comment": "",
+    "date": "2022-08-12",
+    "name": "شيكولاته لعيد ميلاد عبدالله",
+    "price": 75.0,
+    "quantity": 8,
+    "seller": "المحل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-08-12",
+    "name": "طاجن",
+    "price": 17.0,
+    "quantity": 1,
+    "seller": "البرنس"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-14",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-15",
+    "name": "مواصلات",
+    "price": 29.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-08-15",
+    "name": "طاجن",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-17",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-08-17",
+    "name": "قشقوان",
+    "price": 23.0,
+    "quantity": 1,
+    "seller": "المطعم السوري"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-08-17",
+    "name": "سماعة",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "الفتح"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-08-19",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-08-20",
+    "name": "طاجن",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "حمادة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-20",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-21",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-08-21",
+    "name": "زكاة",
+    "price": 20.0,
+    "quantity": 2,
+    "seller": "انا"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-22",
+    "name": "مواصلات",
+    "price": 36.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-08-22",
+    "name": "Snacks",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-08-24",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-08-24",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "other",
+    "comment": "كنت نسيت اكمل كتابة للحاجات اللي بصرفها\\nلازم طرح العدد ده عشان اوصل للي معايا",
+    "date": "2022-08-31",
+    "name": "Balance",
+    "price": 372.0,
+    "quantity": 1,
+    "seller": "Life"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-09-10",
+    "name": "شهادة الاعفاء",
+    "price": 70.0,
+    "quantity": 1,
+    "seller": "القوات المسلحة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-10",
+    "name": "مواصلات",
+    "price": 32.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "computer",
+    "comment": "",
+    "date": "2022-09-15",
+    "name": "16 GB RAM",
+    "price": 1075.0,
+    "quantity": 1,
+    "seller": "Sigma"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-09-23",
+    "name": "Pizza",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "القليوبي"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-09-23",
+    "name": "Chocolate",
+    "price": 41.0,
+    "quantity": 1,
+    "seller": "الحرية"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-09-23",
+    "name": "رصيد",
+    "price": 25.0,
+    "quantity": 1,
+    "seller": "الحرية"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-11",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-12",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-14",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-18",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-19",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-21",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-23",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-15",
+    "name": "مواصلات",
+    "price": 21.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "computer",
+    "comment": "",
+    "date": "2022-09-15",
+    "name": "Laptop screen wiper",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "مول البستان"
+  },
+  {
+    "tags": "computer",
+    "comment": "",
+    "date": "2022-09-15",
+    "name": "Laptop keyboard protector",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "مول البستان"
+  },
+  {
+    "tags": "other",
+    "comment": "",
+    "date": "2022-09-24",
+    "name": "Balance",
+    "price": 159.0,
+    "quantity": 1,
+    "seller": "None"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-25",
+    "name": "مواصلات",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-28",
+    "name": "مواصلات",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-26",
+    "name": "مواصلات",
+    "price": 28.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-09-28",
+    "name": "طاجن",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "كشري الميدان"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-09-28",
+    "name": "مواصلات",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "none",
+    "comment": "",
+    "date": "2022-09-28",
+    "name": "كونفرتر للماك",
+    "price": 25.0,
+    "quantity": 1,
+    "seller": "الممر"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-02",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-03",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-05",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-10-05",
+    "name": "بيتزا",
+    "price": 72.0,
+    "quantity": 1,
+    "seller": "كينج بيتزا"
+  },
+  {
+    "tags": "sweets",
+    "comment": "",
+    "date": "2022-10-05",
+    "name": "ايس كريم",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "العبد"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-10-06",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-07",
+    "name": "مواصلات",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "حلاقة",
+    "comment": "",
+    "date": "2022-10-07",
+    "name": "حلاقة",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "عم طوخي"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-09",
+    "name": "مواصلات",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-10",
+    "name": "مواصلات",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-11",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-10-11",
+    "name": "سندوتش بطاطس",
+    "price": 22.0,
+    "quantity": 1,
+    "seller": "شيف الشام"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-12",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-10-12",
+    "name": "قشقوان",
+    "price": 25.0,
+    "quantity": 1,
+    "seller": "المطعم السوري"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-22",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-10-22",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-10-20",
+    "name": "سندوتشات",
+    "price": 45.0,
+    "quantity": 2,
+    "seller": "عبده بيك"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-10-20",
+    "name": "مشاريب",
+    "price": 13.0,
+    "quantity": 2,
+    "seller": "سعيد"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-10-22",
+    "name": "كشري",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "حماده"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-20",
+    "name": "مواصلات",
+    "price": 5.5,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "apps",
+    "comment": "",
+    "date": "2022-10-30",
+    "name": "Purchase Habit Now",
+    "price": 130.32,
+    "quantity": 1,
+    "seller": "Google Play"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-30",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-10-28",
+    "name": "ربع جبنة",
+    "price": 23.0,
+    "quantity": 1,
+    "seller": "عبدالجواد"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-10-28",
+    "name": "ربع لب",
+    "price": 18.0,
+    "quantity": 1,
+    "seller": "مقلة السنترال"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-28",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-10-28",
+    "name": "كركدية",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "Queen"
+  },
+  {
+    "tags": "snacks",
+    "comment": "ماما اشترت علبتين ب 52 بس انا اديتها 100",
+    "date": "2022-10-29",
+    "name": "علبتين بسكويت",
+    "price": 100.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-10-27",
+    "name": "مواصلات",
+    "price": 28.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "courses",
+    "comment": "",
+    "date": "2022-10-31",
+    "name": "Microservices with Node.js course",
+    "price": 229.92,
+    "quantity": 1,
+    "seller": "Udemy"
+  },
+  {
+    "tags": "medecine",
+    "comment": "",
+    "date": "2022-10-26",
+    "name": "قطرة",
+    "price": 17.0,
+    "quantity": 1,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "medecine",
+    "comment": "",
+    "date": "2022-10-26",
+    "name": "دواء لبابا",
+    "price": 7.5,
+    "quantity": 1,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-04",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-04",
+    "name": "بيتزا",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "القليوبي"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-04",
+    "name": "فطيرة",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "القليوبي"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-11-05",
+    "name": "زكاة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "..."
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-04",
+    "name": "ربع جبنة براميلي",
+    "price": 23.5,
+    "quantity": 1,
+    "seller": "عبدالجواد"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-11-04",
+    "name": "ربع حمص",
+    "price": 14.0,
+    "quantity": 1,
+    "seller": "مقلة السنترال"
+  },
+  {
+    "tags": "medecine",
+    "comment": "",
+    "date": "2022-11-05",
+    "name": "فوار",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "none",
+    "comment": "مصاريف فتح حساب",
+    "date": "2022-10-30",
+    "name": "CIB",
+    "price": 32.9,
+    "quantity": 1,
+    "seller": "CIB"
+  },
+  {
+    "tags": "unknown",
+    "comment": "",
+    "date": "2022-10-25",
+    "name": "Unknown",
+    "price": 278.5,
+    "quantity": 1,
+    "seller": "idk"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-10",
+    "name": "مواصلات",
+    "price": 15.0,
+    "quantity": 4,
+    "seller": "السواق"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-11-10",
+    "name": "شهادات التخرج",
+    "price": 850.0,
+    "quantity": 3,
+    "seller": "هندسة شبرا"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-11",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-11",
+    "name": "طاجن",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "كشري حمادة"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-11-10",
+    "name": "زكاة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "عيل غلبان"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-11-11",
+    "name": "زكاة",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "الست اللي عند الكوبري"
+  },
+  {
+    "tags": "personal care",
+    "comment": "",
+    "date": "2022-11-11",
+    "name": "حلاقة",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "عم طوخي"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-11-12",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-11-11",
+    "name": "عصير قصب",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-13",
+    "name": "مواصلات",
+    "price": 32.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-13",
+    "name": "سندوتش بطاطس",
+    "price": 23.0,
+    "quantity": 1,
+    "seller": "المطعم الشامي"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-14",
+    "name": "مواصلات",
+    "price": 32.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-14",
+    "name": "سندوتش بطاطس",
+    "price": 29.0,
+    "quantity": 1,
+    "seller": "المعطم السوري"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-16",
+    "name": "مواصلات",
+    "price": 32.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "حسبي الله ونعم الوكيل",
+    "date": "2022-11-16",
+    "name": "كوردن بلو",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "سلامه المتميز"
+  },
+  {
+    "tags": "others",
+    "comment": "بابا فكلي 200 جنيه وخد 50 منهم",
+    "date": "2022-11-16",
+    "name": "50 جنيه",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "بابا"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-11-16",
+    "name": "زكاة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "واحد غي موقف الشرفا"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-11-19",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-11-19",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-20",
+    "name": "مواصلات",
+    "price": 29.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-21",
+    "name": "مواصلات",
+    "price": 37.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-20",
+    "name": "قشقوان",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "شيف الشام"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-21",
+    "name": "بيض بسطرمة كرافت",
+    "price": 37.0,
+    "quantity": 1,
+    "seller": "شيف الشام"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-11-21",
+    "name": "زكاة",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "..."
+  },
+  {
+    "tags": "medicine",
+    "comment": "",
+    "date": "2022-11-22",
+    "name": "معجون سنان",
+    "price": 6.5,
+    "quantity": 1,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "snscks",
+    "comment": "",
+    "date": "2022-11-22",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-11-23",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "other",
+    "comment": "",
+    "date": "2022-11-23",
+    "name": "10 جنيه",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "ماما"
+  },
+  {
+    "tags": "tech",
+    "comment": "629 + 1 year warranty for 61 EGP\nhttps://www.amazon.eg/%D8%B3%D9%85%D8%A7%D8%B9%D8%A7%D8%AA-%D9%87%D9%88%D9%86%D8%B1-%D8%AA%D8%B4%D9%88%D9%8A%D8%B3-%D8%A7%D9%83%D8%B3%D8%8C-%D8%A7%D8%B3%D9%88%D8%AF/dp/B09RPYLCVL?qu=eyJxc2MiOiIzLjE1IiwicXNhIjoiMi45MiIsInFzcCI6IjIuMzUifQ%3D%3D",
+    "date": "2022-11-24",
+    "name": "Honor Choice Earbuds X",
+    "price": 690.1,
+    "quantity": 1,
+    "seller": "Amazon"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-01-25",
+    "name": "حاجة ساقعة",
+    "price": 16.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-27",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-11-28",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-11-27",
+    "name": "سندوتش بطاطس",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "مطعم نور"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-11-26",
+    "name": "حاجة ساقعة",
+    "price": 16.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "medecine",
+    "comment": "",
+    "date": "2022-11-29",
+    "name": "قطرة",
+    "price": 17.0,
+    "quantity": 1,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "medecine",
+    "comment": "لماما",
+    "date": "2022-11-29",
+    "name": "قطرة",
+    "price": 27.0,
+    "quantity": 1,
+    "seller": "الصيدلية"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2022-12-03",
+    "name": "جاكت",
+    "price": 550.0,
+    "quantity": 1,
+    "seller": "ORO"
+  },
+  {
+    "tags": "clothes",
+    "comment": "كان ب 340 بس انا فاصلت في التوتال ونزلت 90 فا هنحسبهم من تمن ده",
+    "date": "2022-12-03",
+    "name": "تيشيرت بزعبوط",
+    "price": 250.0,
+    "quantity": 1,
+    "seller": "ORO"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2022-12-03",
+    "name": "تيشيرت",
+    "price": 220.0,
+    "quantity": 1,
+    "seller": "ORO"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2022-12-03",
+    "name": "بنطلون جينز اسود",
+    "price": 240.0,
+    "quantity": 1,
+    "seller": "ORO"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2022-12-03",
+    "name": "بنطلون جينز ازرق",
+    "price": 240.0,
+    "quantity": 1,
+    "seller": "ORO"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2022-12-03",
+    "name": "كوتش",
+    "price": 330.0,
+    "quantity": 1,
+    "seller": "احمد عاصم"
+  },
+  {
+    "tags": "clothes",
+    "comment": "لماما",
+    "date": "2022-12-03",
+    "name": "جزمة",
+    "price": 165.0,
+    "quantity": 1,
+    "seller": "ابو عميرة"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-12-03",
+    "name": "زكاة",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "عيل صغير"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-10",
+    "name": "مواصلات",
+    "price": 2.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-12-10",
+    "name": "مشاريب",
+    "price": 13.0,
+    "quantity": 2,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-10",
+    "name": "شيبسي",
+    "price": 10.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-10",
+    "name": "سوداني",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "...",
+    "comment": "اديتها 200 وخدت 150",
+    "date": "2022-12-10",
+    "name": "فكة من ماما",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "ماما"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-12-12",
+    "name": "سندوتش",
+    "price": 27.5,
+    "quantity": 1,
+    "seller": "شيف الشام"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-12",
+    "name": "مواصلات",
+    "price": 32.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-13",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "1"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-16",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-17",
+    "name": "مواصلات",
+    "price": 15.0,
+    "quantity": 3,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-16",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-16",
+    "name": "دومتي سندوتش",
+    "price": 6.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "من الفرن",
+    "date": "2022-12-16",
+    "name": "حلويات",
+    "price": 35.0,
+    "quantity": 7,
+    "seller": "الفرن"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-12-16",
+    "name": "كوكتيل",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "محل العصير"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2022-12-16",
+    "name": "زكاة",
+    "price": 50.0,
+    "quantity": 1,
+    "seller": "..."
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2022-12-17",
+    "name": "فطار",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "خضر"
+  },
+  {
+    "tags": "شحن",
+    "comment": "",
+    "date": "2022-12-13",
+    "name": "شحن",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "other",
+    "comment": "",
+    "date": "2022-12-16",
+    "name": "تصليح الكوتش",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "محل الجزم"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2022-12-17",
+    "name": "مشاريب",
+    "price": 30.0,
+    "quantity": 5,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "idk",
+    "comment": "",
+    "date": "2022-12-17",
+    "name": "idk",
+    "price": 180.0,
+    "quantity": 1,
+    "seller": "idk"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-18",
+    "name": "سوداني",
+    "price": 18.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-18",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-19",
+    "name": "مواصلات",
+    "price": 33.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "clothes",
+    "comment": "",
+    "date": "2022-12-24",
+    "name": "high cool",
+    "price": 270.0,
+    "quantity": 1,
+    "seller": "oro"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-24",
+    "name": "مواصلات",
+    "price": 17.0,
+    "quantity": 3,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-24",
+    "name": "مخبزات",
+    "price": 40.0,
+    "quantity": 2,
+    "seller": "الفرن"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-25",
+    "name": "مواصلات",
+    "price": 32.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-26",
+    "name": "مواصلات",
+    "price": 32.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-24",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "حلاقة",
+    "comment": "",
+    "date": "2022-12-24",
+    "name": "حلاقة",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "عم طوخي"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-23",
+    "name": "سوداني",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2022-12-24",
+    "name": "سوداني",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2022-12-29",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "ورق",
+    "comment": "",
+    "date": "2022-12-29",
+    "name": "فيش",
+    "price": 75.0,
+    "quantity": 1,
+    "seller": "القسم"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-01",
+    "name": "مواصلات",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-02",
+    "name": "مواصلات",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-01-01",
+    "name": "فطير",
+    "price": 80.0,
+    "quantity": 2,
+    "seller": "معتز"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-01-02",
+    "name": "سندوتش بطاطس",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "شيف الشام"
+  },
+  {
+    "tags": "شحن",
+    "comment": "معرفش شحنت امتى",
+    "date": "2022-12-27",
+    "name": "شحن",
+    "price": 66.0,
+    "quantity": 2,
+    "seller": "المحل"
+  },
+  {
+    "tags": "...",
+    "comment": "",
+    "date": "2023-01-05",
+    "name": "ماما",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "ماما"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-08",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-09",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-15",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-16",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-22",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-23",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-01-16",
+    "name": "سندوتش بطاطس",
+    "price": 30.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "other",
+    "comment": "",
+    "date": "2023-01-20",
+    "name": "Rexona",
+    "price": 52.0,
+    "quantity": 1,
+    "seller": "العثيم"
+  },
+  {
+    "tags": "other",
+    "comment": "",
+    "date": "2023-01-20",
+    "name": "كركدية",
+    "price": 15.0,
+    "quantity": 1,
+    "seller": "المحل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-01-20",
+    "name": "مخبوزات",
+    "price": 56.0,
+    "quantity": 1,
+    "seller": "الفرن"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-01-20",
+    "name": "ازازة زيت",
+    "price": 40.0,
+    "quantity": 1,
+    "seller": "العثيم"
+  },
+  {
+    "tags": "unknown",
+    "comment": "غالبا كورس ميمون\nورجعهوملي اتصالات كاش",
+    "date": "2023-01-28",
+    "name": "unknown",
+    "price": 100.0,
+    "quantity": 1,
+    "seller": "unknown"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-29",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 5,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-01-30",
+    "name": "مواصلات",
+    "price": 33.0,
+    "quantity": 6,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-01-30",
+    "name": "طاجن",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "البرنس"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2023-01-30",
+    "name": "زكاة",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "..."
+  },
+  {
+    "tags": "other",
+    "comment": "",
+    "date": "2023-02-01",
+    "name": "ماما",
+    "price": 300.0,
+    "quantity": 1,
+    "seller": "ماما"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-02",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 5,
+    "seller": "السواق"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2023-02-02",
+    "name": "زكاة",
+    "price": 125.0,
+    "quantity": 2,
+    "seller": "..."
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-02-03",
+    "name": "بقسماط",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "الفرن"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-02-04",
+    "name": "سوداني",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-05",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-06",
+    "name": "مواصلات",
+    "price": 28.5,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2023-02-06",
+    "name": "زكاة",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "..."
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-12",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-13",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "others",
+    "comment": "",
+    "date": "2023-02-11",
+    "name": "شحن",
+    "price": 52.0,
+    "quantity": 1,
+    "seller": "الست اللي جنبنا"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-02-14",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "الست اللي جنبنا"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-19",
+    "name": "مواصلات",
+    "price": 34.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-20",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-18",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "السواق"
+  },
+  {
+    "tags": "others",
+    "comment": "",
+    "date": "2023-02-18",
+    "name": "حلاقة",
+    "price": 35.0,
+    "quantity": 1,
+    "seller": "عم طوخي"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-02-19",
+    "name": "سوداني",
+    "price": 20.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-02-20",
+    "name": "سندوتشات",
+    "price": 65.0,
+    "quantity": 1,
+    "seller": "اريم"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-25",
+    "name": "مواصلات",
+    "price": 15.0,
+    "quantity": 3,
+    "seller": "السواق"
+  },
+  {
+    "tags": "food",
+    "comment": "",
+    "date": "2023-02-25",
+    "name": "طاج فراخ موتزاريلا",
+    "price": 38.0,
+    "quantity": 1,
+    "seller": "الرحماني"
+  },
+  {
+    "tags": "drinks",
+    "comment": "",
+    "date": "2023-02-25",
+    "name": "حاجة ساقعة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "القهوة"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2023-02-25",
+    "name": "زكاة",
+    "price": 10.0,
+    "quantity": 1,
+    "seller": "..."
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-02-27",
+    "name": "مواصلات",
+    "price": 31.0,
+    "quantity": 5,
+    "seller": "السواق"
+  },
+  {
+    "tags": "زكاة",
+    "comment": "",
+    "date": "2023-02-27",
+    "name": "زكاة",
+    "price": 27.0,
+    "quantity": 2,
+    "seller": "..."
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-02-28",
+    "name": "شيبسي",
+    "price": 5.0,
+    "quantity": 1,
+    "seller": "المخل"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-03-04",
+    "name": "شيبسي",
+    "price": 21.0,
+    "quantity": 4,
+    "seller": "المحل"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-03-06",
+    "name": "مواصلات",
+    "price": 33.0,
+    "quantity": 4,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-03-05",
+    "name": "مواصلات",
+    "price": 30.0,
+    "quantity": 4,
+    "seller": "السواق"
+  },
+  {
+    "tags": "مواصلات",
+    "comment": "",
+    "date": "2023-03-08",
+    "name": "مواصلات",
+    "price": 5.0,
+    "quantity": 2,
+    "seller": "السواق"
+  },
+  {
+    "tags": "snacks",
+    "comment": "",
+    "date": "2023-03-08",
+    "name": "سوداني",
+    "price": 22.0,
+    "quantity": 1,
+    "seller": "المقلة"
+  }
+]

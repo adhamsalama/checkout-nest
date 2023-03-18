@@ -5,6 +5,8 @@ import { Request, Response, NextFunction } from 'express';
 export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     console.log('Request Middleware...');
+    console.log({ body: req.body });
+
     next();
   }
 }

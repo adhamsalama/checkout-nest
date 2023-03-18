@@ -113,4 +113,89 @@ export class ExpensesService {
       },
     ]) as unknown as ExpenseStatistics;
   }
+
+  async getMonthlyStatisticsForAYear(userId: string, year: number) {
+    const data: { _id: number; sum: number }[] =
+      await this.expenseModel.aggregate([
+        {
+          $match: {
+            userId,
+            date: {
+              $gte: new Date(`${year}-01-01`),
+              $lte: new Date(`${year}-12-31`),
+            },
+          },
+        },
+        {
+          $addFields: {
+            month: {
+              $month: '$date',
+            },
+          },
+        },
+        {
+          $group: {
+            _id: '$month',
+            sum: {
+              $sum: '$price',
+            },
+          },
+        },
+        {
+          $sort: {
+            _id: 1,
+          },
+        },
+      ]);
+    console.log({ data });
+
+    for (let i = 1; i <= 12; i++) {
+      if (!data.find((month) => month._id == i)) {
+        data.splice(i - 1, 0, { _id: i, sum: 0 });
+      }
+    }
+    console.log({ data });
+
+    return data;
+  }
+  async getMonthlyStatistics(userId, year: string, month: string) {
+    const data: { _id: number; sum: number }[] =
+      await this.expenseModel.aggregate([
+        {
+          $match: {
+            userId,
+            date: {
+              $gte: new Date(`${year}-${month}-01`),
+              $lte: new Date(`${year}-${month}-31`),
+            },
+          },
+        },
+        {
+          $addFields: {
+            day: {
+              $dayOfMonth: '$date',
+            },
+          },
+        },
+        {
+          $group: {
+            _id: '$day',
+            sum: {
+              $sum: '$price',
+            },
+          },
+        },
+        {
+          $sort: {
+            _id: 1,
+          },
+        },
+      ]);
+    const paddedData: { _id: number; sum: number }[] = [];
+    for (let i = 1; i <= 31; i++) {
+      const d = data.find((day) => day._id === i);
+      paddedData.push(d ?? { _id: i, sum: 0 });
+    }
+    return paddedData;
+  }
 }
