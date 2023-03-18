@@ -76,10 +76,13 @@ function Dashboard() {
   return (
     <>
       <div
-      // style={{
-      //   width: "50%",
-      //   height: "50%",
-      // }}
+        style={{
+          width: "50%",
+          height: "50%",
+          alignContent: "center",
+          alignItems: "center",
+          margin: "auto",
+        }}
       >
         <BarChart
           label="Expenses by tags"
