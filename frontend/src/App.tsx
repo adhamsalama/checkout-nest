@@ -1,0 +1,122 @@
+import { HTTPMethod, io } from "./api";
+import LineChart from "./components/LineChart";
+import BarChart from "./components/PieChart";
+function App() {
+  const { data } = io(
+    "http://localhost:4000/expenses/statistics",
+    HTTPMethod.GET
+  ) as {
+    data: any[];
+  };
+  const months = [
+    // "0",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  console.log({ dataaa: data });
+
+  function getMonthsData(year: number) {
+    const res = io(
+      `http://localhost:4000/expenses/statistics/yearly/${year}`,
+      HTTPMethod.GET
+    );
+    return res;
+  }
+  const { data: janData } = io(
+    `http://localhost:4000/expenses/statistics/${2023}/${1}`,
+    HTTPMethod.GET
+  ) as { data?: { _id: number; sum: number }[] };
+  const { data: febData } = io(
+    `http://localhost:4000/expenses/statistics/${2023}/${2}`,
+    HTTPMethod.GET
+  ) as { data?: { _id: number; sum: number }[] };
+
+  const { data: marchData } = io(
+    `http://localhost:4000/expenses/statistics/${2023}/${3}`,
+    HTTPMethod.GET
+  ) as { data?: { _id: number; sum: number }[] };
+
+  const { data: data2023 } = getMonthsData(2023) as {
+    data: { _id: number; sum: number }[];
+  };
+  const { data: data2022 } = getMonthsData(2022) as {
+    data: { _id: number; sum: number }[];
+  };
+  const { data: data2021 } = getMonthsData(2021) as {
+    data: { _id: number; sum: number }[];
+  };
+  const { data: data2020 } = getMonthsData(2020) as {
+    data: { _id: number; sum: number }[];
+  };
+
+  return (
+    <>
+      <div
+      // style={{
+      //   width: "50%",
+      //   height: "50%",
+      // }}
+      >
+        <BarChart
+          label="Expenses by tags"
+          labels={data?.map((item) => item._id) ?? []}
+          data={data?.map((item) => item.totalPrice) ?? []}
+        />
+        <LineChart
+          label="Expenses per month"
+          labels={months}
+          datasets={[
+            {
+              label: "2023",
+              data: data2023?.map((i) => i.sum),
+            },
+            {
+              label: "2022",
+              data: data2022?.map((i) => i.sum),
+            },
+            {
+              label: "2021",
+              data: data2021?.map((i) => i.sum),
+            },
+            {
+              label: "2020",
+              data: data2020?.map((i) => i.sum),
+            },
+          ]}
+        />
+        <LineChart
+          label="Expenses per day"
+          labels={((n: any) => {
+            return [...Array(n).keys()];
+          })(31)}
+          datasets={[
+            {
+              label: "January",
+              data: janData?.map((i) => i.sum) ?? [],
+            },
+            {
+              label: "February",
+              data: febData?.map((i) => i.sum) ?? [],
+            },
+            {
+              label: "March",
+              data: marchData?.map((i) => i.sum) ?? [],
+            },
+          ]}
+        />
+      </div>
+    </>
+  );
+}
+
+export default App;
