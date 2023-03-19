@@ -9,6 +9,8 @@ import { getUser } from "./utils";
 import { Link } from "react-router-dom";
 import Login from "./components/SignIn";
 import { ListExpenses } from "./components/ListExpenses";
+import AddProduct from "./components/AddExpense";
+
 function App() {
   const user = getUser();
   return (

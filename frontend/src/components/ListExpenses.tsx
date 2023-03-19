@@ -3,6 +3,7 @@ import { Expense as ExpenseType } from "../types";
 import { getExpenses, getUser } from "../utils";
 import { Expense } from "./Expense";
 import { Col, Row } from "react-bootstrap";
+import AddProduct from "./AddExpense";
 
 export function ListExpenses() {
   const user = getUser();
@@ -17,18 +18,29 @@ export function ListExpenses() {
     const data = getExpenses(0, 20);
     data.then((data) => setExpenses(data));
   }, []);
-  if (!expenses) return <h1>No expenses</h1>;
   return (
     <>
-      <Row xs={1} md={2} lg={4} className="g-4">
-        {expenses.map((expense) => {
-          return (
-            <Col key={expense._id}>
-              <Expense key={expense._id} {...expense} />
-            </Col>
-          );
-        })}
-      </Row>
+      <AddProduct
+        func={(expense: ExpenseType) => {
+          console.log({ expense, expenses });
+
+          setExpenses(expenses ? [expense, ...expenses] : [expense]);
+          console.log({ expensesAfter: expenses });
+        }}
+      />
+      {expenses ? (
+        <Row xs={1} md={2} lg={4} className="g-4">
+          {expenses.map((expense) => {
+            return (
+              <Col key={expense._id}>
+                <Expense key={expense._id} {...expense} />
+              </Col>
+            );
+          })}
+        </Row>
+      ) : (
+        <h1>No expenses</h1>
+      )}
     </>
   );
 }
