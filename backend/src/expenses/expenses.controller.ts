@@ -19,6 +19,8 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { MyRequest, Optional } from 'src/types';
 import { Expense } from './entities/expense.entity';
 import { ExpenseStatistics } from './dto/get-expenses-statistics.dto';
+import { ValidationPipe } from './validation.pipe';
+import { ExpenseSearch } from './dto/search-expense.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('expenses')
@@ -41,13 +43,14 @@ export class ExpensesController {
   @Get()
   findAll(
     @Request() req: MyRequest,
-    @Query('date') date: string,
-    @Query('limit', ParseIntPipe) limit: number,
-    @Query('offset', ParseIntPipe) offset: number,
+    @Query(new ValidationPipe()) search?: ExpenseSearch,
   ): Promise<Expense[]> {
-    console.log({ date, limit });
+    console.log({ search });
 
-    return this.expensesService.findAll(req.user!.id, limit, offset, date);
+    return this.expensesService.findAll({
+      userId: req.user!.id,
+      ...search,
+    });
   }
 
   @Get('statistics')

@@ -23,14 +23,40 @@ export class ExpensesService {
     return new Ok(result.val);
   }
 
-  async findAll(
-    userId: string,
-    limit: number,
+  async findAll({
+    userId,
+    name,
+    priceGte,
+    priceLte,
+    tags,
+    limit = 20,
     offset = 0,
-    date?: string,
-  ): Promise<Expense[]> {
+    date,
+  }: {
+    userId: string;
+    priceGte?: number;
+    priceLte?: number;
+
+    name?: string;
+    tags?: string[];
+    limit?: number;
+    offset?: number;
+    date?: string;
+  }): Promise<Expense[]> {
+    const priceSearch: { gte?: number; lte?: number } = {};
+    if (priceGte) priceSearch.gte = priceGte;
+    if (priceLte) priceSearch.lte = priceLte;
     return this.expenseModel
-      .find({ userId, ...(date && { date: new Date(date) }) })
+      .find({
+        userId,
+        ...(name && { name: { $regex: name } }),
+        ...(date && { date: new Date(date) }),
+        ...(Object.keys(priceSearch).length && {
+          price: { $gte: priceSearch.gte, $lte: priceSearch.lte },
+        }),
+
+        ...(tags && { tags }),
+      })
       .skip(offset)
       .limit(limit)
       .sort({ date: -1 });
