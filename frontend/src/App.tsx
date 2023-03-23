@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Login from "./components/SignIn";
 import { ListExpenses } from "./components/ListExpenses";
 import AddProduct from "./components/AddExpense";
+import { SearchPage } from "./components/SearchPage";
 
 function App() {
   const user = getUser();
@@ -50,6 +51,7 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<ListExpenses />} />
