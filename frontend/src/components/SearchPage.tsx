@@ -6,6 +6,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { config } from "../../config";
 import Expense from "./Expense";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
 
 export function SearchPage() {
   const user = getUser();
@@ -17,12 +20,21 @@ export function SearchPage() {
   // const day = date.getDate();
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const [priceGte, setPriceGte] = useState(0);
-  const [priceLte, setPriceLte] = useState(0);
+  const [priceGte, setPriceGte] = useState<number>();
+  const [priceLte, setPriceLte] = useState<number>();
 
   const [limit, setLimit] = useState("");
   const [offset, setOffset] = useState("");
   const [tags, setTags] = useState("");
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [useDate, setUseDate] = useState(true);
+
+  const selectionRange = {
+    startDate,
+    endDate,
+    key: "selection",
+  };
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -31,7 +43,27 @@ export function SearchPage() {
     if (name) url += `name=${encodeURI(name)}&`;
     if (priceGte) url += `priceGte=${priceGte}&`;
     if (priceLte) url += `priceLte=${priceLte}&`;
-    if (date) url += `date=${date}&`;
+
+    if (useDate) {
+      if (startDate) {
+        const year = startDate.getFullYear();
+        const month = startDate.getMonth() + 1;
+        const day = startDate.getDate();
+        const dateStr = `${year}-${month}-${day}`;
+        url += `startDate=${dateStr}&`;
+      }
+      if (endDate) {
+        const year = endDate.getFullYear();
+        const month = endDate.getMonth() + 1;
+        const day =
+          startDate.toDateString() == endDate.toDateString()
+            ? endDate.getDate()
+            : endDate.getDate() + 1;
+        const dateStr = `${year}-${month}-${day}`;
+        url += `endDate=${dateStr}&`;
+      }
+    }
+
     if (limit) url += `limit=${limit}&`;
     if (offset) url += `offset=${offset}&`;
     if (tags) {
@@ -110,7 +142,37 @@ export function SearchPage() {
             placeholder="Tags"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Check
+          type="checkbox"
+          label="Search with Date"
+          checked={useDate}
+          id={`default-checkbox`}
+          onChange={(e) => {
+            setUseDate(!useDate);
+            console.log({ useDate });
+          }}
+        />
+
+        {useDate && (
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <DateRangePicker
+              ranges={[selectionRange]}
+              onChange={(selection) => {
+                // console.log({
+                //   q: selection.selection.startDate,
+                //   d: selection.selection.startDate?.toISOString().slice(0, 10),
+                //   dd: selection.selection.endDate?.toISOString().slice(0, 10),
+                // });
+
+                if (selection.selection.startDate)
+                  setStartDate(selection.selection.startDate);
+                if (selection.selection.endDate)
+                  setEndDate(selection.selection.endDate);
+              }}
+            />
+          </Form.Group>
+        )}
+        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Date</Form.Label>
           <Form.Control
             type="date"
@@ -118,7 +180,7 @@ export function SearchPage() {
             onChange={(e) => setDate(e.target.value)}
             placeholder="Date"
           />
-        </Form.Group>
+        </Form.Group> */}
         {/* <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Comment</Form.Label>
         <Form.Control

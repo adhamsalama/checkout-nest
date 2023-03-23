@@ -1,0 +1,5 @@
+[yasta-tasks]
+test = "echo 'You do not have any tests.'"
+backend = "cd backend && npm run start:dev"
+frontend = "cd frontend && npm run dev"
+all = [ "backend", "frontend",]

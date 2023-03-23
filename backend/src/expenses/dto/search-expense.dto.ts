@@ -1,4 +1,4 @@
-import { IsOptional, IsInt, IsString, IsArray } from 'class-validator';
+import { IsOptional, IsInt, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class ExpenseSearch {
@@ -30,18 +30,14 @@ export class ExpenseSearch {
   @IsOptional()
   @Type(() => String)
   @IsString()
-  date?: string;
+  startDate?: string;
 
   @IsOptional()
   @Type(() => String)
-  @IsArray()
+  @IsString()
+  endDate?: string;
+
+  @IsOptional()
+  @Type(() => String)
   tags?: string[];
 }
-
-// @Query('date') date: string,
-// @Query('limit', ParseIntPipe) limit: number,
-// @Query('offset', ParseIntPipe) offset: number,
-// @Query('priceLte', ParseIntPipe) priceLte: number,
-// @Query('priceGte', ParseIntPipe) priceGte: number,
-// @Query('name') name?: string,
-// @Query('tags') tags?: string[],
