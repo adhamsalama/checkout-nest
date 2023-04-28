@@ -12,6 +12,10 @@ import { DateRangePicker } from "react-date-range";
 import debounce from "lodash.debounce";
 
 export function SearchPage() {
+  function deleteExpense(id: string) {
+    setExpenses(expenses?.filter((expense) => expense._id !== id));
+  }
+
   const user = getUser();
   if (!user) return <h1>Login</h1>;
   const [expenses, setExpenses] = useState<ExpenseType[]>();
@@ -277,7 +281,11 @@ export function SearchPage() {
           {expenses.map((expense) => {
             return (
               <Col key={expense._id}>
-                <Expense key={expense._id} {...expense} />
+                <Expense
+                  key={expense._id}
+                  {...expense}
+                  deleteExpense={deleteExpense}
+                />
               </Col>
             );
           })}
