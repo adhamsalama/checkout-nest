@@ -6,18 +6,35 @@ import { Col, Row } from "react-bootstrap";
 import AddProduct from "./AddExpense";
 
 export function ListExpenses() {
+  function deleteExpense(id: string) {
+    console.log("deleteing expense", id);
+
+    setExpenses(expenses?.filter((expense) => expense._id !== id));
+  }
   const user = getUser();
   if (!user) return <h1>Login</h1>;
   const [expenses, setExpenses] = useState<ExpenseType[]>();
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const [offset, setOffset] = useState(0);
+  const OFFSET_STEP = 20;
+  const handleScroll = async () => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight;
 
+    if (bottom) {
+      setOffset(offset + OFFSET_STEP + 1);
+    }
+  };
+  window.addEventListener("scroll", handleScroll, {
+    passive: true,
+  });
   useEffect(() => {
-    const data = getExpenses(0, 20);
-    data.then((data) => setExpenses(data));
-  }, []);
+    const data = getExpenses(offset, 20);
+
+    data.then((data) => {
+      setExpenses([...(expenses ?? []), ...data]);
+    });
+  }, [offset]);
   return (
     <>
       <AddProduct
@@ -33,7 +50,11 @@ export function ListExpenses() {
           {expenses.map((expense) => {
             return (
               <Col key={expense._id}>
-                <Expense key={expense._id} {...expense} />
+                <Expense
+                  key={expense._id}
+                  {...expense}
+                  deleteExpense={deleteExpense}
+                />
               </Col>
             );
           })}
