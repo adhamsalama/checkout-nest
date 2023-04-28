@@ -9,6 +9,7 @@ import Expense from "./Expense";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
+import debounce from "lodash.debounce";
 
 export function SearchPage() {
   const user = getUser();
@@ -23,22 +24,80 @@ export function SearchPage() {
   const [priceGte, setPriceGte] = useState<number>();
   const [priceLte, setPriceLte] = useState<number>();
 
-  const [limit, setLimit] = useState("");
-  const [offset, setOffset] = useState("");
+  const [limit, setLimit] = useState<number>(20);
   const [tags, setTags] = useState("");
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
-  const [useDate, setUseDate] = useState(true);
+  const [useDate, setUseDate] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [searched, setSearched] = useState(false);
+  const OFFSET_STEP = 20;
+  console.log({ expenses });
 
-  const selectionRange = {
-    startDate,
-    endDate,
-    key: "selection",
+  const handleScroll = async () => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight;
+
+    if (bottom && searched) {
+      // window.scrollTo(0, 0);
+      // debounce(() => {
+      console.log("boinggggg");
+
+      const data = await search({
+        name,
+        priceGte,
+        priceLte,
+        useDate,
+        startDate,
+        endDate,
+        // limit,
+        offset: offset + OFFSET_STEP + 1,
+        tags,
+      });
+      setExpenses([...(expenses ?? []), ...data]);
+      setOffset(offset + OFFSET_STEP + 1);
+      if (data.length < OFFSET_STEP) {
+        console.log("no more data");
+
+        setSearched(false);
+      }
+      // })();
+    }
   };
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    console.log({ token });
+  // useEffect(() => {
+  window.addEventListener("scroll", handleScroll, {
+    passive: true,
+  });
+
+  // return () => {
+  //   window.removeEventListener("scroll", handleScroll);
+  // };
+  // }, []);
+
+  async function search(s: {
+    name?: string;
+    priceGte?: number;
+    priceLte?: number;
+    useDate?: boolean;
+    startDate?: Date;
+    endDate?: Date;
+    limit?: number;
+    offset?: number;
+    tags?: string;
+  }) {
+    const {
+      name,
+      priceGte,
+      priceLte,
+      useDate,
+      startDate,
+      endDate,
+      // limit = 1,
+      offset,
+      tags,
+    } = s;
+
     let url = config.baseUrl + "/expenses?";
     if (name) url += `name=${encodeURI(name)}&`;
     if (priceGte) url += `priceGte=${priceGte}&`;
@@ -56,9 +115,7 @@ export function SearchPage() {
         const year = endDate.getFullYear();
         const month = endDate.getMonth() + 1;
         const day =
-          startDate.toDateString() == endDate.toDateString()
-            ? endDate.getDate()
-            : endDate.getDate() + 1;
+          endDate.getDate() == 31 ? endDate.getDate() : endDate.getDate() + 1;
         const dateStr = `${year}-${month}-${day}`;
         url += `endDate=${dateStr}&`;
       }
@@ -78,11 +135,32 @@ export function SearchPage() {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setExpenses(data);
-      });
+    }).then((res) => res.json());
+
+    return data;
+  }
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = await search({
+      name,
+      priceGte,
+      priceLte,
+      useDate,
+      startDate,
+      endDate,
+      limit,
+      offset: 0,
+      tags,
+    });
+    console.log({ data });
+    setExpenses(data);
+    setSearched(true);
+    setOffset(0);
   };
 
   return (
