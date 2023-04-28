@@ -7,8 +7,6 @@ import AddProduct from "./AddExpense";
 
 export function ListExpenses() {
   function deleteExpense(id: string) {
-    console.log("deleteing expense", id);
-
     setExpenses(expenses?.filter((expense) => expense._id !== id));
   }
   const user = getUser();
@@ -39,10 +37,7 @@ export function ListExpenses() {
     <>
       <AddProduct
         func={(expense: ExpenseType) => {
-          console.log({ expense, expenses });
-
           setExpenses(expenses ? [expense, ...expenses] : [expense]);
-          console.log({ expensesAfter: expenses });
         }}
       />
       {expenses ? (
