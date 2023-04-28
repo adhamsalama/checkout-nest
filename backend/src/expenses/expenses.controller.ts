@@ -4,13 +4,12 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UseGuards,
   Request,
   Query,
-  ParseIntPipe,
+  Put,
 } from '@nestjs/common';
 import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
@@ -83,7 +82,7 @@ export class ExpensesController {
     return this.expensesService.findOne(id, req.user!.id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateExpenseDto: UpdateExpenseDto,
