@@ -69,8 +69,8 @@ export class ExpensesService {
 
         ...(tags && { tags }),
       })
-      .skip(offset)
-      .limit(limit)
+      .skip(Number(offset))
+      .limit(Number(limit))
       .sort({ date: -1 });
   }
 
