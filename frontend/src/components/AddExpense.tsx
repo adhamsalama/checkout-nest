@@ -104,7 +104,8 @@ function AddProduct({ func }: { func: (expense: Expense) => any }) {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Comment</Form.Label>
         <Form.Control
-          type="text"
+          as="textarea"
+          type="textarea"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="comment"
