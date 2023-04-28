@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Expense as ExpenseType } from "../types";
 import { getExpenses, getUser } from "../utils";
 import { Expense } from "./Expense";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row } from "react-bootstrap";
 import AddProduct from "./AddExpense";
 
 export function ListExpenses() {
@@ -33,13 +33,29 @@ export function ListExpenses() {
       setExpenses([...(expenses ?? []), ...data]);
     });
   }, [offset]);
+  const [showEditModal, setShowEditModal] = useState(false);
   return (
     <>
-      <AddProduct
-        func={(expense: ExpenseType) => {
-          setExpenses(expenses ? [expense, ...expenses] : [expense]);
-        }}
-      />
+      <Button
+        variant="primary"
+        onClick={() => setShowEditModal(true)}
+        style={{ margin: "10px" }}
+      >
+        Add Expense
+      </Button>
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Expense</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <AddProduct
+            func={(expense: ExpenseType) => {
+              setExpenses(expenses ? [expense, ...expenses] : [expense]);
+              setShowEditModal(false);
+            }}
+          />
+        </Modal.Body>
+      </Modal>
       {expenses ? (
         <Row xs={1} md={2} lg={4} className="g-4">
           {expenses.map((expense) => {
