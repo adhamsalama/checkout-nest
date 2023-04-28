@@ -37,3 +37,17 @@ export async function deleteExpense(id: string): Promise<Expense> {
   });
   return data;
 }
+
+export async function updateExpense(
+  expense: Omit<Expense, "userId">
+): Promise<Expense> {
+  const data = fetch(config.baseUrl + `/expenses/${expense._id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(expense),
+  }).then((res) => res.json());
+  return data;
+}
