@@ -24,3 +24,16 @@ export async function getExpenses(
   }).then((res) => res.json());
   return data;
 }
+
+export async function deleteExpense(id: string): Promise<Expense> {
+  const data = fetch(config.baseUrl + `/expenses/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }).then((res) => {
+    console.log({ res });
+    return res.json();
+  });
+  return data;
+}
