@@ -55,9 +55,16 @@ export function Expense(props: ExpenseProps) {
         <Button
           variant="danger"
           onClick={() =>
-            deleteExpense(props._id).then((data) => {
-              props.deleteExpense(props._id);
-            })
+            // alert the user to confirm deletion
+            {
+              if (
+                window.confirm("Are you sure you want to delete this expense?")
+              ) {
+                deleteExpense(props._id).then((data) => {
+                  props.deleteExpense(props._id);
+                });
+              }
+            }
           }
         >
           Delete
