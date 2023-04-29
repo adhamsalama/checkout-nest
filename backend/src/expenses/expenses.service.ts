@@ -67,7 +67,7 @@ export class ExpensesService {
           price: { ...priceSearch },
         }),
 
-        ...(tags && { tags }),
+        ...(tags && { tags: { $in: tags } }),
       })
       .skip(Number(offset))
       .limit(Number(limit))
