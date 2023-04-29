@@ -44,8 +44,6 @@ export class ExpensesController {
     @Request() req: MyRequest,
     @Query(new ValidationPipe()) search?: ExpenseSearch,
   ): Promise<Expense[]> {
-    console.log({ search });
-
     return this.expensesService.findAll({
       userId: req.user!.id,
       ...search,
