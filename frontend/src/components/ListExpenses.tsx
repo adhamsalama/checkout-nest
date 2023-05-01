@@ -1,16 +1,31 @@
 import { useEffect, useState } from "react";
-import { Expense as ExpenseType } from "../types";
+import { Expense as ExpenseType, User } from "../types";
 import { getExpenses, getUser } from "../utils";
 import { Expense } from "./Expense";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import AddProduct from "./AddExpense";
+import { HTTPMethod, io } from "../api";
+import { config } from "../../config";
 
 export function ListExpenses() {
   function deleteExpense(id: string) {
+    user!.balance += expenses!.find((expense) => expense._id === id)!.price;
     setExpenses(expenses?.filter((expense) => expense._id !== id));
   }
-  const user = getUser();
-  if (!user) return <h1>Login</h1>;
+  const userData = getUser();
+  if (!userData) return <h1>Login</h1>;
+  const token = localStorage.getItem("token");
+  // fetch user from api using his id
+
+  const { data: user } = io(
+    `${config.baseUrl}/users/${userData._id}`,
+    HTTPMethod.GET,
+    null,
+    {
+      Authorization: `Bearer ${token}`,
+    }
+  ) as { data?: User };
+
   const [expenses, setExpenses] = useState<ExpenseType[]>();
   const [offset, setOffset] = useState(0);
   const OFFSET_STEP = 20;
@@ -36,6 +51,7 @@ export function ListExpenses() {
   const [showEditModal, setShowEditModal] = useState(false);
   return (
     <>
+      <h1>Balance: ${user?.balance ?? 0}</h1>
       <Button
         variant="primary"
         onClick={() => setShowEditModal(true)}
@@ -52,6 +68,7 @@ export function ListExpenses() {
             func={(expense: ExpenseType) => {
               setExpenses(expenses ? [expense, ...expenses] : [expense]);
               setShowEditModal(false);
+              user!.balance -= expense.price;
             }}
           />
         </Modal.Body>
