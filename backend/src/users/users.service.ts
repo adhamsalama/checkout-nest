@@ -6,12 +6,17 @@ import { Optional } from 'src/types';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async create(createUserDto: CreateUserDto): Promise<Result<User, Error>> {
     const user: User = { ...createUserDto, balance: 0 };
+    console.log({ bcrypt });
+
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    user.password = hashedPassword;
     const result = await ioresult(this.userModel.create(user));
     if (!result.ok) return new Err(result.val);
     const userObject = result.val.toObject();
