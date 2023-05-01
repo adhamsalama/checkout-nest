@@ -1,12 +1,14 @@
 import jwt_decode from "jwt-decode";
 import { config } from "../config";
-import { Expense } from "./types";
+import { Expense, User } from "./types";
 
-export function getUser() {
+export function getUser(): User | null {
   const token = localStorage.getItem("token");
   if (!token) return null;
-  const user: { _id: string; email: string } | null = jwt_decode(token);
-  return user;
+  const user: { sub: string; email: string; balance: number } | null =
+    jwt_decode(token);
+  if (!user) return null;
+  return { ...user, _id: user.sub };
 }
 
 export async function getExpenses(

@@ -9,3 +9,5 @@ export type Expense = {
   sellerName?: string;
   userId: string;
 };
+
+export type User = { _id: string; email: string; balance: number };
