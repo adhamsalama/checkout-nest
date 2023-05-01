@@ -66,19 +66,17 @@ function Dashboard() {
     });
   }
   const monthsData: { label: string; data: number[] }[] = [];
-  for (
-    let i = 0,
-      year = new Date().getFullYear(),
-      month = new Date().getMonth() + 1 - i;
-    i < 2;
-    i++ && month > 0
-  ) {
+  for (let i = 0; i < 2; i++) {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1 - i;
+    console.log({ month });
+
     const { data: monthData } = getMonthData(year, month) as {
       data?: { _id: number; sum: number }[];
     };
     monthsData.push({
-      label: months[month],
-      data: monthData?.map((y) => y.sum) ?? [],
+      label: months[month - 1],
+      data: [0].concat(monthData?.map((y) => y.sum) ?? []) ?? [],
     });
   }
   if (!localStorage.getItem("token")) {
