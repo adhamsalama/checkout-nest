@@ -26,8 +26,13 @@ export class PaymentsController {
   async create(
     @Body() createPaymentDto: CreatePaymentDto,
     @Request() req: MyRequest,
-  ): Promise<Result<Payment, string>> {
-    return this.paymentsService.create(createPaymentDto, req.user!.id);
+  ): Promise<Payment> {
+    const payment = await this.paymentsService.create(
+      createPaymentDto,
+      req.user!.id,
+    );
+    if (payment.isErr()) throw new Error(payment.error);
+    return payment.value;
   }
 
   @Get()
