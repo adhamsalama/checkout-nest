@@ -11,7 +11,7 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async create(createUserDto: CreateUserDto): Promise<Result<User, Error>> {
-    const user: User = createUserDto;
+    const user: User = { ...createUserDto, balance: 0 };
     const result = await ioresult(this.userModel.create(user));
     if (!result.ok) return new Err(result.val);
     const userObject = result.val.toObject();
@@ -37,6 +37,17 @@ export class UsersService {
   //   return user;
   // }
 
+  async updateBalance(
+    id: string,
+    amount: number,
+  ): Promise<Result<User, string>> {
+    const user = await this.userModel.findOneAndUpdate(
+      { _id: id },
+      { $inc: { balance: amount } },
+    );
+    if (!user) return new Err('User not found');
+    return new Ok(user);
+  }
   async remove(id: string): Promise<Optional<User>> {
     return this.userModel.findByIdAndDelete(id);
   }

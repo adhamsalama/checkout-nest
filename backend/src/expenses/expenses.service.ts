@@ -6,11 +6,13 @@ import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { Expense, ExpenseDocument } from './entities/expense.entity';
 import { Ok, Err, Result, ioresult } from 'ioresult';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class ExpensesService {
   constructor(
     @InjectModel(Expense.name) private expenseModel: Model<ExpenseDocument>,
+    private usersService: UsersService,
   ) {}
 
   async create(
@@ -20,6 +22,7 @@ export class ExpensesService {
     const expense: Expense = { ...createExpenseDto, userId };
     const result = await ioresult(this.expenseModel.create(expense));
     if (!result.ok) return new Err(result.val);
+    await this.usersService.updateBalance(userId, -expense.price);
     return new Ok(result.val);
   }
 
@@ -91,7 +94,13 @@ export class ExpensesService {
   }
 
   async remove(id: string, userId: string): Promise<Optional<Expense>> {
-    return this.expenseModel.findOneAndDelete({ _id: id, userId });
+    const expense = await this.expenseModel.findOneAndDelete({
+      _id: id,
+      userId,
+    });
+    if (!expense) return null;
+    await this.usersService.updateBalance(userId, expense.price);
+    return expense;
   }
 
   async getStatistics(userId: string): Promise<ExpenseStatistics> {
@@ -194,18 +203,18 @@ export class ExpensesService {
           },
         },
       ]);
-    console.log({ data });
 
     for (let i = 1; i <= 12; i++) {
       if (!data.find((month) => month._id == i)) {
         data.splice(i - 1, 0, { _id: i, sum: 0 });
       }
     }
-    console.log({ data });
 
     return data;
   }
-  async getMonthlyStatistics(userId, year: string, month: string) {
+  async getMonthlyStatistics(userId: string, year: string, month: string) {
+    console.log({ date: new Date(`${year}-${month}-1`) });
+
     const data: { _id: number; sum: number }[] =
       await this.expenseModel.aggregate([
         {
