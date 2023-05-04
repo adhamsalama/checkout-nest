@@ -10,6 +10,7 @@ import {
   Request,
   Query,
   Put,
+  NotFoundException,
 } from '@nestjs/common';
 import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
@@ -81,12 +82,20 @@ export class ExpensesController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateExpenseDto: UpdateExpenseDto,
     @Request() req: MyRequest,
-  ): Promise<Optional<Expense>> {
-    return this.expensesService.update(id, updateExpenseDto, req.user!.id);
+  ): Promise<Expense> {
+    const result = await this.expensesService.update(
+      id,
+      updateExpenseDto,
+      req.user!.id,
+    );
+    if (!result) {
+      throw new NotFoundException('Expense not found');
+    }
+    return result;
   }
 
   @Delete(':id')

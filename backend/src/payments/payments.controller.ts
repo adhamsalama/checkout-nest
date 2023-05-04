@@ -3,11 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Request,
   UseGuards,
+  Put,
 } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
@@ -15,7 +15,6 @@ import { UpdatePaymentDto } from './dto/update-payment.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { MyRequest } from 'src/types';
 import { Payment } from './entities/payment.entity';
-import { Result } from 'neverthrow';
 
 @UseGuards(JwtAuthGuard)
 @Controller('payments')
@@ -41,17 +40,32 @@ export class PaymentsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.paymentsService.findOne(+id);
+  async findOne(@Param('id') id: string, @Request() req: MyRequest) {
+    const payment = await this.paymentsService.findOne(id, req.user!.id);
+    if (!payment) throw new Error('Payment not found');
+    return payment;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePaymentDto: UpdatePaymentDto) {
-    return this.paymentsService.update(+id, updatePaymentDto);
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Request() req: MyRequest,
+    @Body() updatePaymentDto: UpdatePaymentDto,
+  ): Promise<Payment> {
+    const result = await this.paymentsService.update(
+      id,
+      req.user!.id,
+      updatePaymentDto,
+    );
+    return result._unsafeUnwrap();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.paymentsService.remove(+id);
+  async remove(
+    @Param('id') id: string,
+    @Request() req: MyRequest,
+  ): Promise<Payment> {
+    const result = await this.paymentsService.remove(id, req.user!.id);
+    return result._unsafeUnwrap();
   }
 }

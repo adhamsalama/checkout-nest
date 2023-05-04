@@ -3,42 +3,48 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
-  ParseIntPipe,
-  HttpCode,
-  Res,
+  NotFoundException,
+  BadRequestException,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { Optional } from 'src/types';
-import { Response } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { MyRequest } from 'src/types';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
+  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     const result = await this.usersService.create(createUserDto);
     if (!result.ok) {
-      return res.status(400).json({ message: result.val.message });
+      throw new BadRequestException({ message: result.val.message });
     }
-
-    return res.status(201).json({ ...result.val });
+    return result.val;
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.usersService.findAll();
+  // }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  async findOne(
+    @Param('id') id: string,
+    @Request() req: MyRequest,
+  ): Promise<User> {
+    console.log({ id });
+
+    const user = await this.usersService.findOne(id);
+    if (!user || user._id.toString() != req.user?.id)
+      throw new NotFoundException('User not found');
+    return user;
   }
 
   // @Patch(':id')
@@ -49,9 +55,9 @@ export class UsersController {
   //   return this.usersService.update(id, updateUserDto);
   // }
 
-  @HttpCode(204)
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
-  }
+  // @HttpCode(204)
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.usersService.remove(id);
+  // }
 }
