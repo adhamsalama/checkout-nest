@@ -11,6 +11,7 @@ import Login from "./components/SignIn";
 import { ListExpenses } from "./components/ListExpenses";
 import AddProduct from "./components/AddExpense";
 import { SearchPage } from "./components/SearchPage";
+import PaymentPage from "./components/ListPayments";
 
 function App() {
   const user = getUser();
@@ -24,6 +25,7 @@ function App() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+              <Nav.Link href="/payments">Payments</Nav.Link>
               <Nav.Link href="/search">Search</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -43,6 +45,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<ListExpenses />} />
+        <Route path="/payments" element={<PaymentPage />} />
       </Routes>{" "}
     </Container>
   );
