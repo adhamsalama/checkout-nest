@@ -1,27 +1,19 @@
-// export class Expense {
-// name: string;
-// price: number;
-// quantity: number;
-// tags: string[];
-// comment?: string;
-// date: Date;
-// sellerName?: string;
-// userId: string;
-// }
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type ExpenseDocument = HydratedDocument<Expense>;
 
-@Schema()
+@Schema({ validateBeforeSave: true })
 export class Expense {
-  @Prop()
+  _id: string;
+
+  @Prop({ required: true })
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   price: number;
 
-  @Prop()
+  @Prop({ required: true })
   quantity: number;
 
   @Prop([String])
@@ -30,17 +22,18 @@ export class Expense {
   @Prop()
   comment?: string;
 
-  @Prop()
+  @Prop({ required: true })
   date: Date;
 
   @Prop()
   sellerName?: string;
 
-  @Prop()
+  @Prop({ required: true })
   userId: string;
 }
 
 export const ExpenseSchema = SchemaFactory.createForClass(Expense);
+console.log({ ExpenseSchema: JSON.stringify(ExpenseSchema) });
 
 ExpenseSchema.index({ userId: 1 });
 ExpenseSchema.index({ _id: 1, userId: 1 });

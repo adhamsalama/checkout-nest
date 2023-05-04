@@ -5,19 +5,21 @@ export type PaymentDocument = HydratedDocument<Payment>;
 
 @Schema()
 export class Payment {
-  @Prop()
+  _id: string;
+
+  @Prop({ required: true })
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   value: number;
 
-  @Prop()
+  @Prop({ required: true })
   date: Date;
 
   @Prop()
   sellerName?: string;
 
-  @Prop()
+  @Prop({ required: true })
   userId: string;
 }
 
