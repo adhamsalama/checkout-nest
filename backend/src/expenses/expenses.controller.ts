@@ -21,7 +21,9 @@ import { Expense } from './entities/expense.entity';
 import { ExpenseStatistics } from './dto/get-expenses-statistics.dto';
 import { ValidationPipe } from './validation.pipe';
 import { ExpenseSearch } from './dto/search-expense.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('expenses')
 export class ExpensesController {

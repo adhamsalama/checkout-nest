@@ -14,18 +14,21 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AuthenticatedRequest } from 'src/types';
+import { GetUserDto } from './dto/get-user.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async create(@Body() createUserDto: CreateUserDto): Promise<GetUserDto> {
     const result = await this.usersService.create(createUserDto);
     if (!result.ok) {
       throw new BadRequestException({ message: result.val.message });
     }
-    return result.val;
+    const response = new GetUserDto(result.val);
+    return response;
   }
 
   // @Get()
@@ -33,6 +36,7 @@ export class UsersController {
   //   return this.usersService.findAll();
   // }
 
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(
