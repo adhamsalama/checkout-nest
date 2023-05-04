@@ -4,7 +4,6 @@ import { Result, ioresult, Err, Ok } from 'ioresult';
 import { Model } from 'mongoose';
 import { Optional } from 'src/types';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 @Injectable()
