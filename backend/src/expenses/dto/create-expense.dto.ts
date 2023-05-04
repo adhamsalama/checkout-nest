@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsString,
   IsNumber,
@@ -24,6 +25,7 @@ export class CreateExpenseDto {
   comment?: string;
 
   @IsDate()
+  @Transform(({ value }) => new Date(value))
   date: Date;
 
   @IsOptional()
