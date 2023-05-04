@@ -19,7 +19,7 @@ export class ExpensesService {
     createExpenseDto: CreateExpenseDto,
     userId: string,
   ): Promise<Result<Expense, Error>> {
-    const expense: Expense = { ...createExpenseDto, userId };
+    const expense: Omit<Expense, '_id'> = { ...createExpenseDto, userId };
     const result = await ioresult(this.expenseModel.create(expense));
     if (!result.ok) return new Err(result.val);
     await this.usersService.updateBalance(userId, -expense.price);

@@ -18,7 +18,7 @@ export class PaymentsService {
     createPaymentDto: CreatePaymentDto,
     userId: string,
   ): Promise<Result<Payment, string>> {
-    const payment: Payment = { ...createPaymentDto, userId };
+    const payment: Omit<Payment, '_id'> = { ...createPaymentDto, userId };
     const createdPayment = await this.paymentModel.create(payment);
     const user = await this.usersService.updateBalance(
       userId,
@@ -33,15 +33,46 @@ export class PaymentsService {
     return this.paymentModel.find({ userId });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} payment`;
+  async findOne(id: string, userId: string): Promise<Payment | null> {
+    return this.paymentModel.findOne({ _id: id, userId });
   }
 
-  update(id: number, updatePaymentDto: UpdatePaymentDto) {
-    return `This action updates a #${id} payment`;
+  async update(
+    id: string,
+    userId: string,
+    updatePaymentDto: UpdatePaymentDto,
+  ): Promise<Result<Payment, string>> {
+    const payment = await this.paymentModel.findByIdAndUpdate(
+      {
+        _id: id,
+        userId,
+      },
+      updatePaymentDto,
+      { new: false },
+    );
+    console.log({ updatePaymentDto, payment });
+
+    if (!payment) return new Err('Payment not found');
+    if (
+      updatePaymentDto.value !== null &&
+      updatePaymentDto.value !== undefined
+    ) {
+      const result = await this.usersService.updateBalance(
+        userId,
+        updatePaymentDto.value - payment.value,
+      );
+      if (!result.ok) return new Err(result.val);
+    }
+    return new Ok(payment);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} payment`;
+  async remove(id: string, userId: string): Promise<Result<Payment, string>> {
+    const payment = await this.paymentModel.findOneAndDelete({
+      _id: id,
+      userId,
+    });
+    if (!payment) return new Err('Payment not found');
+    await this.usersService.updateBalance(userId, -payment.value);
+    return new Ok(payment);
   }
 }
