@@ -3,13 +3,11 @@ import Dashboard from "./components/Dashboard";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getUser } from "./utils";
 import { Link } from "react-router-dom";
-import Login from "./components/SignIn";
+import Auth from "./components/Auth";
 import { ListExpenses } from "./components/ListExpenses";
-import AddProduct from "./components/AddExpense";
 import { SearchPage } from "./components/SearchPage";
 import PaymentPage from "./components/ListPayments";
 
@@ -34,7 +32,7 @@ function App() {
               {user ? (
                 `Signed in as: ${user.email}`
               ) : (
-                <Link to="/login">Login</Link>
+                <Link to="/auth">Sign in</Link>
               )}
             </Navbar.Text>
           </Navbar.Collapse>
@@ -42,7 +40,7 @@ function App() {
       </Navbar>
       <Routes>
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<ListExpenses />} />
         <Route path="/payments" element={<PaymentPage />} />
