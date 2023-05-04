@@ -5,7 +5,6 @@ import {
   Col,
   Form,
   Button,
-  Table,
   Card,
   Modal,
 } from "react-bootstrap";
@@ -100,7 +99,7 @@ const PaymentPage: React.FC = () => {
         },
         body: JSON.stringify({
           name,
-          // value,
+          value,
           date,
           description,
         }),
