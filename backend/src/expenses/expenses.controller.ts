@@ -16,7 +16,7 @@ import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { MyRequest, Optional } from 'src/types';
+import { AuthenticatedRequest, Optional } from 'src/types';
 import { Expense } from './entities/expense.entity';
 import { ExpenseStatistics } from './dto/get-expenses-statistics.dto';
 import { ValidationPipe } from './validation.pipe';
@@ -30,11 +30,11 @@ export class ExpensesController {
   @Post()
   async create(
     @Body() createExpenseDto: CreateExpenseDto,
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
   ): Promise<Expense> {
     const res = await this.expensesService.create(
       createExpenseDto,
-      req.user!.id,
+      req.user.id,
     );
     if (!res.ok) throw new Error(res.val.message);
     return res.val;
@@ -42,24 +42,29 @@ export class ExpensesController {
 
   @Get()
   findAll(
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
     @Query(new ValidationPipe()) search?: ExpenseSearch,
   ): Promise<Expense[]> {
     return this.expensesService.findAll({
-      userId: req.user!.id,
+      userId: req.user.id,
       ...search,
     });
   }
 
   @Get('statistics')
-  getStatistics(@Request() req: MyRequest): Promise<ExpenseStatistics> {
-    return this.expensesService.getStatistics(req.user!.id);
+  getStatistics(
+    @Request() req: AuthenticatedRequest,
+  ): Promise<ExpenseStatistics> {
+    return this.expensesService.getStatistics(req.user.id);
   }
 
   @Get('statistics/yearly/:year')
-  getYearlyStatistics(@Param('year') year: string, @Request() req: MyRequest) {
+  getYearlyStatistics(
+    @Param('year') year: string,
+    @Request() req: AuthenticatedRequest,
+  ) {
     return this.expensesService.getMonthlyStatisticsForAYear(
-      req.user!.id,
+      req.user.id,
       parseInt(year),
     );
   }
@@ -68,29 +73,29 @@ export class ExpensesController {
   getMonthlyStatistics(
     @Param('month') month: string,
     @Param('year') year: string,
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
   ) {
-    return this.expensesService.getMonthlyStatistics(req.user!.id, year, month);
+    return this.expensesService.getMonthlyStatistics(req.user.id, year, month);
   }
 
   @Get(':id')
   findOne(
     @Param('id') id: string,
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
   ): Promise<Optional<Expense>> {
-    return this.expensesService.findOne(id, req.user!.id);
+    return this.expensesService.findOne(id, req.user.id);
   }
 
   @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updateExpenseDto: UpdateExpenseDto,
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
   ): Promise<Expense> {
     const result = await this.expensesService.update(
       id,
       updateExpenseDto,
-      req.user!.id,
+      req.user.id,
     );
     if (!result) {
       throw new NotFoundException('Expense not found');
@@ -101,8 +106,8 @@ export class ExpensesController {
   @Delete(':id')
   remove(
     @Param('id') id: string,
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
   ): Promise<Optional<Expense>> {
-    return this.expensesService.remove(id, req.user!.id);
+    return this.expensesService.remove(id, req.user.id);
   }
 }

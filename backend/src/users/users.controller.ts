@@ -13,7 +13,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { MyRequest } from 'src/types';
+import { AuthenticatedRequest } from 'src/types';
 
 @Controller('users')
 export class UsersController {
@@ -37,7 +37,7 @@ export class UsersController {
   @Get(':id')
   async findOne(
     @Param('id') id: string,
-    @Request() req: MyRequest,
+    @Request() req: AuthenticatedRequest,
   ): Promise<User> {
     console.log({ id });
 
