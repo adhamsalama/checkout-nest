@@ -86,11 +86,25 @@ export class ExpensesService {
     updateExpenseDto: UpdateExpenseDto,
     userId: string,
   ): Promise<Optional<Expense>> {
-    return this.expenseModel.findOneAndUpdate(
-      { _id: id, userId },
-      { ...updateExpenseDto, userId },
-      { new: true },
-    );
+    const expense = await this.expenseModel
+      .findOneAndUpdate(
+        { _id: id, userId },
+        { ...updateExpenseDto, userId },
+        { new: false },
+      )
+      .lean();
+    if (!expense) return null;
+    if (
+      updateExpenseDto.price !== null &&
+      updateExpenseDto.price !== undefined
+    ) {
+      await this.usersService.updateBalance(
+        userId,
+        expense.price - updateExpenseDto.price,
+      );
+      expense.price = updateExpenseDto.price;
+    }
+    return expense;
   }
 
   async remove(id: string, userId: string): Promise<Optional<Expense>> {
