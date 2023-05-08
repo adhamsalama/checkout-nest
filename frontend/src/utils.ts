@@ -4,7 +4,8 @@ import { Expense, User } from "./types";
 
 export function getUser(): User | null {
   const token = localStorage.getItem("token");
-  if (!token) return null;
+  if (!token || token == "undefined") return null;
+
   const user: { sub: string; email: string; balance: number } | null =
     jwt_decode(token);
   if (!user) return null;
