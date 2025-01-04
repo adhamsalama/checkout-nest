@@ -35,7 +35,7 @@ export function ListExpenses() {
       document.documentElement.scrollHeight;
 
     if (bottom) {
-      setOffset(offset + OFFSET_STEP + 1);
+      setOffset(offset + OFFSET_STEP);
     }
   };
   window.addEventListener("scroll", handleScroll, {
