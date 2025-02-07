@@ -10,10 +10,11 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import debounce from "lodash.debounce";
+import LineChart from "./LineChart";
 
 export function SearchPage() {
-  function deleteExpense(id: string) {
-    setExpenses(expenses?.filter((expense) => expense._id !== id));
+  function deleteExpense(id: number) {
+    setExpenses(expenses?.filter((expense) => expense.id !== id));
   }
 
   const user = getUser();
@@ -89,7 +90,7 @@ export function SearchPage() {
     limit?: number;
     offset?: number;
     tags?: string;
-  }) {
+  }): Promise<ExpenseType[]> {
     const {
       name,
       priceGte,
@@ -109,19 +110,14 @@ export function SearchPage() {
 
     if (useDate) {
       if (startDate) {
-        const year = startDate.getFullYear();
-        const month = startDate.getMonth() + 1;
-        const day = startDate.getDate();
-        const dateStr = `${year}-${month}-${day}`;
-        url += `startDate=${dateStr}&`;
+        const d = new Date(startDate);
+        d.setDate(d.getDate() + 1)
+        url += `startDate=${d.toISOString().split("T")[0]}&`;
       }
       if (endDate) {
-        const year = endDate.getFullYear();
-        const month = endDate.getMonth() + 1;
-        const day =
-          endDate.getDate() == 31 ? endDate.getDate() : endDate.getDate() + 1;
-        const dateStr = `${year}-${month}-${day}`;
-        url += `endDate=${dateStr}&`;
+        const d = new Date(endDate);
+        d.setDate(d.getDate() + 1)
+        url += `endDate=${d.toISOString().split("T")[0]}&`;
       }
     }
 
@@ -165,6 +161,7 @@ export function SearchPage() {
     setExpenses(data);
     setSearched(true);
     setOffset(0);
+    // group expenses by date
   };
 
   return (
@@ -246,8 +243,9 @@ export function SearchPage() {
                 //   dd: selection.selection.endDate?.toISOString().slice(0, 10),
                 // });
 
-                if (selection.selection.startDate)
+                if (selection.selection.startDate) {
                   setStartDate(selection.selection.startDate);
+                }
                 if (selection.selection.endDate)
                   setEndDate(selection.selection.endDate);
               }}
@@ -280,9 +278,9 @@ export function SearchPage() {
         <Row xs={1} md={2} lg={4} className="g-4">
           {expenses.map((expense) => {
             return (
-              <Col key={expense._id}>
+              <Col key={expense.id}>
                 <Expense
-                  key={expense._id}
+                  key={expense.id}
                   {...expense}
                   deleteExpense={deleteExpense}
                 />
