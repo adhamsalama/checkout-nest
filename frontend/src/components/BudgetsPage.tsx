@@ -71,7 +71,7 @@ const BudgetPage: React.FC = () => {
         setBudget(data);
         setShowModal(false);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => alert(error));
   };
 
   const handleDeleteBudget = () => {
@@ -87,7 +87,7 @@ const BudgetPage: React.FC = () => {
           setName("");
           setValue(0);
         })
-        .catch((error) => console.error(error));
+        .catch((error) => alert(error));
     }
   };
 
