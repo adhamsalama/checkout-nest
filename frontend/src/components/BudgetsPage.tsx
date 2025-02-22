@@ -165,6 +165,7 @@ const BudgetPage: React.FC = () => {
         </Modal.Body>
       </Modal>
       <TaggedBudgetManager></TaggedBudgetManager>
+      <BudgetStats></BudgetStats>
     </Container>
   );
 };
@@ -300,7 +301,65 @@ const TaggedBudgetManager: React.FC = () => {
   );
 };
 ;
+interface GetTaggedBudgetStats {
+  id: number;
+  name: string;
+  value: number;
+  intervalInDays: number;
+  totalPrice: { value: number } | null;
+}
+async function getBudgetStats(): Promise<GetTaggedBudgetStats[]> {
+  const url = config.baseUrl + `/budgets/tagged/stats`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response.json();
+}
 
+const BudgetStatCard: React.FC<{ stat: GetTaggedBudgetStats }> = ({ stat }) => {
+  const spent = -(stat.totalPrice ?? 0);
+  const remaining = stat.value - spent;
+  const percentageLeft = (remaining / stat.value) * 100;
+
+  let bgColor = "bg-danger";
+  if (percentageLeft >= 75) bgColor = "bg-success";
+  else if (percentageLeft >= 50) bgColor = "bg-primary";
+  else if (percentageLeft >= 25) bgColor = "bg-warning";
+
+  return (
+    <Card className={`mb-3 text-white ${bgColor}`}>
+      <Card.Body>
+        <Card.Title>{stat.name}</Card.Title>
+        <Card.Text>
+          <strong>Budget:</strong> ${stat.value} <br />
+          <strong>Interval:</strong> {stat.intervalInDays} days <br />
+          <strong>Spent:</strong> ${spent} <br />
+          <strong>Remaining:</strong> ${remaining}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const BudgetStats: React.FC = () => {
+  const [budgetStats, setBudgetStats] = useState<GetTaggedBudgetStats[]>([]);
+
+  useEffect(() => {
+    getBudgetStats().then(setBudgetStats);
+  }, []);
+
+  return (
+    <div>
+      <h2>Budget Stats</h2>
+      {budgetStats.map((stat) => (
+        <BudgetStatCard key={stat.id} stat={stat} />
+      ))}
+    </div>
+  );
+};;
 
 export default BudgetPage;
 
