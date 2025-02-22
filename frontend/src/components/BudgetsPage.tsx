@@ -1,12 +1,40 @@
-
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Modal, Form } from "react-bootstrap";
 import { config } from "../../config";
+import { HTTPMethod, io } from "../api";
 
 interface Budget {
+  id: number;
   name: string;
   value: number;
 }
+
+interface TaggedBudget extends Budget {
+  intervalInDays: number;
+  tag: string
+}
+
+interface TaggedBudgetCardProps {
+  budget: TaggedBudget;
+  onEdit: () => void;
+  onDelete: () => void;
+}
+
+const TaggedBudgetCard: React.FC<TaggedBudgetCardProps> = ({ budget, onEdit, onDelete }) => (
+  <Col md={4} className="mb-3">
+    <Card>
+      <Card.Body>
+        <Card.Title>{budget.name}</Card.Title>
+        <Card.Text>Value: ${budget.value}</Card.Text>
+        <Card.Text>Interval: {budget.intervalInDays} days</Card.Text>
+        <Card.Text>Tag: {budget.tag}</Card.Text>
+        <Button variant="danger" onClick={onDelete}>
+          Delete
+        </Button>
+      </Card.Body>
+    </Card>
+  </Col>
+);
 
 const BudgetCard: React.FC<{ budget: Budget; onEdit: () => void; onDelete: () => void }> = ({ budget, onEdit, onDelete }) => (
   <Col md={4} className="mb-3">
@@ -24,6 +52,7 @@ const BudgetCard: React.FC<{ budget: Budget; onEdit: () => void; onDelete: () =>
     </Card>
   </Col>
 );
+
 
 const BudgetPage: React.FC = () => {
   const [budget, setBudget] = useState<Budget | null>(null);
@@ -135,9 +164,143 @@ const BudgetPage: React.FC = () => {
           </Form>
         </Modal.Body>
       </Modal>
+      <TaggedBudgetManager></TaggedBudgetManager>
     </Container>
   );
 };
+
+
+
+async function getBudgets(): Promise<TaggedBudget[]> {
+  const url = config.baseUrl + `/budgets/tagged`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  const json = response.json();
+  console.log({ json })
+  return json;
+}
+
+async function saveBudget(budget: Omit<TaggedBudget, "id">): Promise<TaggedBudget> {
+  const url = config.baseUrl + `/budgets/tagged`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(budget),
+  });
+  const json = await res.json() as TaggedBudget;
+  return json;
+}
+
+async function deleteBudgetApi(id: number) {
+  const url = config.baseUrl + `/budgets/tagged/${id}`;
+  await fetch(url, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+}
+
+const TaggedBudgetManager: React.FC = () => {
+  const [budgets, setBudgets] = useState<TaggedBudget[]>([]);
+  const [newTaggedBudget, setNewTaggedBudget] = useState<Omit<TaggedBudget, "id">>({
+    name: "",
+    value: 0,
+    intervalInDays: 0,
+    tag: "",
+  });
+
+  useEffect(() => {
+    getBudgets().then(setBudgets);
+  }, []);
+
+  const addBudget = async () => {
+    const savedBudget = await saveBudget(newTaggedBudget);
+    setBudgets([...budgets, savedBudget]);
+    setNewTaggedBudget({ name: "", value: 0, intervalInDays: 0, tag: "" });
+  };
+
+  const deleteBudget = async (id: number) => {
+    await deleteBudgetApi(id);
+    setBudgets(budgets.filter((budget) => budget.id !== id));
+  };
+
+  return (
+    <div>
+      <Form>
+        <h2>Create Tagged Budget</h2>
+        <Form.Group className="mb-2">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            value={newTaggedBudget.name}
+            onChange={(e) =>
+              setNewTaggedBudget({ ...newTaggedBudget, name: e.target.value })
+            }
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label>Value</Form.Label>
+          <Form.Control
+            type="number"
+            value={newTaggedBudget.value}
+            onChange={(e) =>
+              setNewTaggedBudget({
+                ...newTaggedBudget,
+                value: parseFloat(e.target.value),
+              })
+            }
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label>Interval in Days</Form.Label>
+          <Form.Control
+            type="number"
+            value={newTaggedBudget.intervalInDays}
+            onChange={(e) =>
+              setNewTaggedBudget({
+                ...newTaggedBudget,
+                intervalInDays: parseInt(e.target.value),
+              })
+            }
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Label>Tag</Form.Label>
+          <Form.Control
+            type="text"
+            value={newTaggedBudget.tag}
+            onChange={(e) =>
+              setNewTaggedBudget({ ...newTaggedBudget, tag: e.target.value })
+            }
+          />
+        </Form.Group>
+        <Button variant="primary" onClick={addBudget}>
+          Add Budget
+        </Button>
+      </Form>
+      <Row>
+        {budgets.map((budget) => (
+          <TaggedBudgetCard
+            key={budget.id}
+            budget={budget}
+            onEdit={() => { }}
+            onDelete={() => deleteBudget(budget.id)}
+          />
+        ))}
+      </Row>
+    </div>
+  );
+};
+;
+
 
 export default BudgetPage;
 
