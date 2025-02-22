@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Modal, Form } from "react-bootstrap";
 import { config } from "../../config";
-import { HTTPMethod, io } from "../api";
 
 interface Budget {
   id: number;
@@ -13,28 +12,6 @@ interface TaggedBudget extends Budget {
   intervalInDays: number;
   tag: string
 }
-
-interface TaggedBudgetCardProps {
-  budget: TaggedBudget;
-  onEdit: () => void;
-  onDelete: () => void;
-}
-
-const TaggedBudgetCard: React.FC<TaggedBudgetCardProps> = ({ budget, onEdit, onDelete }) => (
-  <Col md={4} className="mb-3">
-    <Card>
-      <Card.Body>
-        <Card.Title>{budget.name}</Card.Title>
-        <Card.Text>Value: ${budget.value}</Card.Text>
-        <Card.Text>Interval: {budget.intervalInDays} days</Card.Text>
-        <Card.Text>Tag: {budget.tag}</Card.Text>
-        <Button variant="danger" onClick={onDelete}>
-          Delete
-        </Button>
-      </Card.Body>
-    </Card>
-  </Col>
-);
 
 const BudgetCard: React.FC<{ budget: Budget; onEdit: () => void; onDelete: () => void }> = ({ budget, onEdit, onDelete }) => (
   <Col md={4} className="mb-3">
@@ -228,11 +205,6 @@ const TaggedBudgetManager: React.FC = () => {
     setNewTaggedBudget({ name: "", value: 0, intervalInDays: 0, tag: "" });
   };
 
-  const deleteBudget = async (id: number) => {
-    await deleteBudgetApi(id);
-    setBudgets(budgets.filter((budget) => budget.id !== id));
-  };
-
   return (
     <div>
       <Form>
@@ -287,16 +259,6 @@ const TaggedBudgetManager: React.FC = () => {
           Add Budget
         </Button>
       </Form>
-      <Row>
-        {budgets.map((budget) => (
-          <TaggedBudgetCard
-            key={budget.id}
-            budget={budget}
-            onEdit={() => { }}
-            onDelete={() => deleteBudget(budget.id)}
-          />
-        ))}
-      </Row>
     </div>
   );
 };
@@ -319,7 +281,7 @@ async function getBudgetStats(): Promise<GetTaggedBudgetStats[]> {
   return response.json();
 }
 
-const BudgetStatCard: React.FC<{ stat: GetTaggedBudgetStats }> = ({ stat }) => {
+const BudgetStatCard: React.FC<{ stat: GetTaggedBudgetStats, onDelete: () => void }> = ({ stat, onDelete }) => {
   const spent = -(stat.totalPrice ?? 0);
   const remaining = stat.value - spent;
   const percentageLeft = (remaining / stat.value) * 100;
@@ -334,11 +296,14 @@ const BudgetStatCard: React.FC<{ stat: GetTaggedBudgetStats }> = ({ stat }) => {
       <Card.Body>
         <Card.Title>{stat.name}</Card.Title>
         <Card.Text>
-          <strong>Budget:</strong> ${stat.value} <br />
+          <strong>Budget:</strong> ${stat.value.toFixed(2)} <br />
+          <strong>Spent:</strong> ${spent.toFixed(2)} <br />
+          <strong>Remaining:</strong> ${remaining.toFixed(2)} <br />
           <strong>Interval:</strong> {stat.intervalInDays} days <br />
-          <strong>Spent:</strong> ${spent} <br />
-          <strong>Remaining:</strong> ${remaining}
         </Card.Text>
+        <Button variant="danger" onClick={onDelete}>
+          Delete
+        </Button>
       </Card.Body>
     </Card>
   );
@@ -350,16 +315,21 @@ const BudgetStats: React.FC = () => {
   useEffect(() => {
     getBudgetStats().then(setBudgetStats);
   }, []);
-
+  const deleteBudget = async (id: number) => {
+    await deleteBudgetApi(id);
+    setBudgetStats(budgetStats.filter((budget) => budget.id !== id));
+  };
   return (
     <div>
       <h2>Budget Stats</h2>
       {budgetStats.map((stat) => (
-        <BudgetStatCard key={stat.id} stat={stat} />
+        <BudgetStatCard key={stat.id} stat={stat}
+          onDelete={() => deleteBudget(stat.id)}
+        />
       ))}
     </div>
   );
-};;
+};
 
 export default BudgetPage;
 
