@@ -79,7 +79,7 @@ export function ListExpenses() {
 
   useEffect(() => {
     if (budget && currentMonthSum !== undefined) {
-      const spent = -currentMonthSum;
+      const spent = -(currentMonthSum ?? 0);
       const remaining = budget.value - spent;
       setRemainingBudget(remaining);
 
