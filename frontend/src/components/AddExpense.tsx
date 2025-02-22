@@ -61,7 +61,11 @@ function AddProduct({ func }: { func: (expense: Expense) => any }) {
         <Form.Control
           type="number"
           value={price}
-          onChange={(e) => setPrice(parseFloat(e.target.value))}
+          onChange={(e) => {
+            const p = parseFloat(e.target.value);
+            if (isNaN(p)) return e.target.value;
+            setPrice(p);
+          }}
           placeholder="Price"
         />
       </Form.Group>

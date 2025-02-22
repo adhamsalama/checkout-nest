@@ -69,13 +69,13 @@ export default function LineChart({
       options={options}
       data={{
         labels,
-        datasets: datasets.map((line) => {
+        datasets: datasets.map((line, index) => {
           return {
             label: line.label,
             data: line.data,
-            backgroundColor: `rgb(${Math.random() * 255},${
-              Math.random() * 255
-            },${Math.random() * 255} )`,
+            backgroundColor: `rgb(${Math.random() * (index + 1) * 100},${
+              Math.random() * (index + 1) * 200
+            },${Math.random() * (index + 1) * 255} )`,
           };
         }),
         // datasets: [

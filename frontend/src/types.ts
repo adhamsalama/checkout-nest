@@ -1,5 +1,5 @@
 export type Expense = {
-  _id: string;
+  id: number;
   name: string;
   price: number;
   quantity: number;
@@ -9,5 +9,11 @@ export type Expense = {
   sellerName?: string;
   userId: string;
 };
+
+export type MonthlyBudget = {
+  id: number;
+  value: number;
+  date: Date
+}
 
 export type User = { _id: string; email: string; balance: number };

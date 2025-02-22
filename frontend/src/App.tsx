@@ -10,6 +10,7 @@ import Auth from "./components/Auth";
 import { ListExpenses } from "./components/ListExpenses";
 import { SearchPage } from "./components/SearchPage";
 import PaymentPage from "./components/ListPayments";
+import BudgetsPage from "./components/BudgetsPage";
 
 function App() {
   const user = getUser();
@@ -24,6 +25,7 @@ function App() {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/dashboard">Dashboard</Nav.Link>
               <Nav.Link href="/payments">Payments</Nav.Link>
+              <Nav.Link href="/budgets">Budgets</Nav.Link>
               <Nav.Link href="/search">Search</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -44,6 +46,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<ListExpenses />} />
         <Route path="/payments" element={<PaymentPage />} />
+        <Route path="/budgets" element={<BudgetsPage />} />
       </Routes>{" "}
     </Container>
   );

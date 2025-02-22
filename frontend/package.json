@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -14,11 +14,13 @@
     "d3": "^7.8.2",
     "date-fns": "^2.29.3",
     "jwt-decode": "^3.1.2",
+    "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-chartjs-2": "^5.2.0",
     "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router": "^6.9.0",
     "react-router-dom": "^6.9.0",
     "zod": "^3.21.4"
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "@types/d3": "^7.4.0",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/react": "^18.0.27",
     "@types/react-date-range": "^1.4.4",
     "@types/react-dom": "^18.0.10",

@@ -6,7 +6,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import { deleteExpense, updateExpense } from "../utils";
 
 interface ExpenseProps extends ExpenseType {
-  deleteExpense: (id: string) => void;
+  deleteExpense: (id: number) => void;
 }
 
 export function Expense(props: ExpenseProps) {
@@ -15,13 +15,14 @@ export function Expense(props: ExpenseProps) {
   const [price, setPrice] = useState(props.price);
   const [quantity, setQuantity] = useState(props.quantity);
   const [sellerName, setSellerName] = useState(props.sellerName);
+  console.log({ sellerName })
   const [tags, setTags] = useState(props.tags);
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleEditSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     updateExpense({
-      _id: props._id,
+      id: props.id,
       name,
       date,
       price,
@@ -55,16 +56,16 @@ export function Expense(props: ExpenseProps) {
         <Button
           variant="danger"
           onClick={() =>
-            // alert the user to confirm deletion
-            {
-              if (
-                window.confirm("Are you sure you want to delete this expense?")
-              ) {
-                deleteExpense(props._id).then((data) => {
-                  props.deleteExpense(props._id);
-                });
-              }
+          // alert the user to confirm deletion
+          {
+            if (
+              window.confirm("Are you sure you want to delete this expense?")
+            ) {
+              deleteExpense(props.id).then((data) => {
+                props.deleteExpense(props.id);
+              });
             }
+          }
           }
         >
           Delete

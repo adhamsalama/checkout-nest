@@ -16,29 +16,36 @@ function Dashboard() {
   }
   function getYearData(year: number) {
     const res = io(
-      `http://localhost:4000/expenses/statistics/yearly/${year}`,
+      `${config.baseUrl}/expenses/statistics/yearly/${year}`,
       HTTPMethod.GET,
       null,
       { Authorization: `Bearer ${localStorage.getItem("token")}` }
     );
     return res;
   }
-  const { data: currentYearCurrentMonth } = getMonthData(
-    new Date().getFullYear(),
-    new Date().getMonth() + 1
-  ) as { data: { _id: number; sum: number }[] };
-  const { data: previousYearCurrentMonth } = getMonthData(
-    new Date().getFullYear() - 1,
-    new Date().getMonth() + 1
-  ) as { data: { _id: number; sum: number }[] };
+  // const { data: currentYearCurrentMonth } = getMonthData(
+  //   new Date().getFullYear(),
+  //   new Date().getMonth() + 1
+  // ) as { data: { _id: number; sum: number }[] };
+  // const { data: previousYearCurrentMonth } = getMonthData(
+  //   new Date().getFullYear() - 1,
+  //   new Date().getMonth() + 1
+  // ) as { data: { _id: number; sum: number }[] };
 
   const { data } = io(
-    "http://localhost:4000/expenses/statistics",
+    `${config.baseUrl}/expenses/statistics`,
     HTTPMethod.GET,
     null,
     { Authorization: `Bearer ${localStorage.getItem("token")}` }
   ) as {
-    data: any[];
+    data: {
+      tag: string;
+      count: number;
+      max: number;
+      min: number;
+      avg: number;
+      sum: number;
+    }[];
   };
   const months = [
     // "0",
@@ -57,9 +64,15 @@ function Dashboard() {
   ];
   const yearsData: { label: string; data: number[] }[] = [];
   for (let i = 0; i < 3; i++) {
-    const { data: yearData } = getYearData(new Date().getFullYear() - i) as {
-      data?: { _id: number; sum: number }[];
+    let { data: yearData } = getYearData(new Date().getFullYear() - i) as {
+      data?: { month: number; sum: number }[];
     };
+    yearData = yearData?.map(i => {
+      return {
+        ...i,
+        sum: -i.sum
+      }
+    })
     yearsData.push({
       label: (new Date().getFullYear() - i).toString(),
       data: yearData?.map((y) => y.sum) ?? [],
@@ -70,33 +83,46 @@ function Dashboard() {
     const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1 - i;
     console.log({ month });
-
+    if (month == 0) {
+      continue;
+    }
     const { data: monthData } = getMonthData(year, month) as {
       data?: { _id: number; sum: number }[];
     };
     monthsData.push({
       label: months[month - 1],
-      data: [0].concat(monthData?.map((y) => y.sum) ?? []) ?? [],
+      data: [0].concat(monthData?.map((y) => -y.sum) ?? []) ?? [],
     });
   }
-  if (!localStorage.getItem("token")) {
-    return <h1>Not logged in</h1>;
-  }
+  // if (!localStorage.getItem("token")) {
+  //   return <h1>Not logged in</h1>;
+  // }
   return (
     <div
       style={{
-        width: "50%",
-        height: "50%",
+        width: "100%",
+        height: "100%",
         alignContent: "center",
         alignItems: "center",
         margin: "auto",
       }}
     >
-      <BarChart
-        label="Expenses by tags"
-        labels={data?.map((item) => item._id) ?? []}
-        data={data?.map((item) => item.totalPrice) ?? []}
-      />
+      <div
+        style={{
+          width: "55%",
+          height: "55%",
+          alignContent: "center",
+          alignItems: "center",
+          margin: "auto",
+        }}
+      >
+        <BarChart
+          label="Expenses by tags"
+          labels={data?.map((item) => item.tag) ?? []}
+          data={data?.map((item) => item.sum) ?? []}
+        />
+      </div>
+
       <LineChart
         label={`Expenses per month for last ${yearsData.length} years`}
         labels={months}
@@ -106,7 +132,7 @@ function Dashboard() {
         label={`Expenses per day for last ${monthsData.length} months`}
         labels={((n: any) => {
           return [...Array(n).keys()];
-        })(31)}
+        })(32)}
         datasets={monthsData}
       />
     </div>

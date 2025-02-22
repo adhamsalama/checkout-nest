@@ -9,14 +9,9 @@ import {
   Modal,
 } from "react-bootstrap";
 import { config } from "../../config";
+import { Expense } from "../types"
 
-interface Payment {
-  _id: number;
-  name: string;
-  value: number;
-  date: string;
-  description: string;
-}
+interface Payment extends Expense { }
 
 const PaymentPage: React.FC = () => {
   const [payments, setPayments] = useState<Payment[]>([]);
@@ -28,7 +23,7 @@ const PaymentPage: React.FC = () => {
   const [editPaymentId, setEditPaymentId] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:4000/payments", {
+    fetch(`${config.baseUrl}/payments`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -56,26 +51,26 @@ const PaymentPage: React.FC = () => {
   };
 
   const handleEditPayment = (paymentId: number) => {
-    const payment = payments.find((p) => p._id === paymentId);
+    const payment = payments.find((p) => p.id === paymentId);
     if (payment) {
-      setEditPaymentId(payment._id);
+      setEditPaymentId(payment.id);
       setName(payment.name);
-      setValue(payment.value);
+      setValue(payment.price);
       setDate(payment.date);
-      setDescription(payment.description);
+      setDescription(payment.comment ?? "");
       setShowEditModal(true);
     }
   };
 
   const handleDeletePayment = (payment: Payment) => {
     if (window.confirm(`Are you sure you want to delete ${payment.name}?`)) {
-      fetch(`http://localhost:4000/payments/${payment._id}`, {
+      fetch(`${config.baseUrl}/payments/${payment.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-        .then(() => setPayments(payments.filter((p) => p._id !== payment._id)))
+        .then(() => setPayments(payments.filter((p) => p.id !== payment.id)))
         .catch((error) => console.error(error));
     }
   };
@@ -91,7 +86,7 @@ const PaymentPage: React.FC = () => {
 
   const handleSaveEditModal = () => {
     if (editPaymentId !== null) {
-      fetch(`http://localhost:4000/payments/${editPaymentId}`, {
+      fetch(`${config.baseUrl}/payments/${editPaymentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -99,14 +94,16 @@ const PaymentPage: React.FC = () => {
         },
         body: JSON.stringify({
           name,
-          value,
+          price: value,
           date,
-          description,
-        }),
+          quantity: 1,
+          comment: description,
+          tags: [],
+        } as Omit<Payment, "id" | "userId">),
       })
         .then(() => {
           const updatedPayments = payments.map((payment) =>
-            payment._id === editPaymentId
+            payment.id === editPaymentId
               ? { ...payment, name, value, date, description }
               : payment
           );
@@ -184,20 +181,20 @@ const PaymentPage: React.FC = () => {
       </Row>
       <Row>
         {payments.map((payment) => (
-          <Col key={payment._id} md={4} style={{ marginBottom: "20px" }}>
+          <Col key={payment.id} md={4} style={{ marginBottom: "20px" }}>
             <Card>
               <Card.Body>
                 <Card.Title>{payment.name}</Card.Title>
                 <Card.Text>
-                  Value: {payment.value}
+                  Value: {payment.price}
                   <br />
                   Date: {payment.date}
                   <br />
-                  Description: {payment.description}
+                  Description: {payment.comment}
                 </Card.Text>
                 <Button
                   variant="primary"
-                  onClick={() => handleEditPayment(payment._id)}
+                  onClick={() => handleEditPayment(payment.id)}
                 >
                   Edit
                 </Button>

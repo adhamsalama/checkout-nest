@@ -1,3 +1,3 @@
 export const config = {
-  baseUrl: "http://localhos:4000",
+  baseUrl: "http://localhost:8080",
 };

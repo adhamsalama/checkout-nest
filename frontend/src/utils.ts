@@ -3,13 +3,14 @@ import { config } from "../config";
 import { Expense, User } from "./types";
 
 export function getUser(): User | null {
-  const token = localStorage.getItem("token");
-  if (!token || token == "undefined") return null;
-
-  const user: { sub: string; email: string; balance: number } | null =
-    jwt_decode(token);
-  if (!user) return null;
-  return { ...user, _id: user.sub };
+  return { email: "test@test.test", balance: 1, _id: "a" }
+  // const token = localStorage.getItem("token");
+  // if (!token || token == "undefined") return null;
+  //
+  // const user: { sub: string; email: string; balance: number } | null =
+  //   jwt_decode(token);
+  // if (!user) return null;
+  // return { ...user, _id: user.sub };
 }
 
 export async function getExpenses(
@@ -28,7 +29,7 @@ export async function getExpenses(
   return data;
 }
 
-export async function deleteExpense(id: string): Promise<Expense> {
+export async function deleteExpense(id: number): Promise<Expense> {
   const data = fetch(config.baseUrl + `/expenses/${id}`, {
     method: "DELETE",
     headers: {
@@ -44,7 +45,7 @@ export async function deleteExpense(id: string): Promise<Expense> {
 export async function updateExpense(
   expense: Omit<Expense, "userId">
 ): Promise<Expense> {
-  const data = fetch(config.baseUrl + `/expenses/${expense._id}`, {
+  const data = fetch(config.baseUrl + `/expenses/${expense.id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
