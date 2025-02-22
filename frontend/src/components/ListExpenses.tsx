@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Expense as ExpenseType, User } from "../types";
 import { getExpenses, getUser } from "../utils";
@@ -50,7 +49,7 @@ export function ListExpenses() {
     {
       Authorization: `Bearer ${token}`,
     }
-  ) as { data?: number };
+  ) as { data?: number | null };
 
   const [expenses, setExpenses] = useState<ExpenseType[]>();
   const [offset, setOffset] = useState(0);
@@ -104,12 +103,12 @@ export function ListExpenses() {
       <h1>Balance: ${balance ?? 0}</h1>
       {budget && currentMonthSum !== undefined && (
         <>
-          <h2>Spent This Month: ${-currentMonthSum}</h2>
-          <h2>Monthly Budget: ${budget.value}</h2>
+          <h2>Spent This Month: ${-(currentMonthSum?.toFixed(2) ?? 0)}</h2>
+          <h2>Monthly Budget: ${budget.value.toFixed(2)}</h2>
         </>
       )}
       {remainingBudget !== null && (
-        <Alert variant={alertVariant}>Remaining Budget: ${remainingBudget}</Alert>
+        <Alert variant={alertVariant}>Remaining Budget: ${remainingBudget.toFixed(2)}</Alert>
       )}
       {warning && <Alert variant="danger">{warning}</Alert>}
       <Button
